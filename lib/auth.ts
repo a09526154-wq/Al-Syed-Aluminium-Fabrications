@@ -3,10 +3,6 @@ import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { admin } from "better-auth/plugins";
 import { db } from "@/lib/db";
 import * as schema from "@/lib/schema";
-import * as dotenv from "dotenv";
-
-dotenv.config({ path: ".env.local" });
-dotenv.config();
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
