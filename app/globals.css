@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Primary (navy/charcoal) */
+  --primary: #0B0F1A;
+  --primary-dark: #070A12;
+  --primary-surface: #0F1420;
+
+  /* Accent (gold) */
+  --accent: #C9A24B;
+  --accent-light: #D4AF6A;
+  --accent-hover: #b38e3a;
+
+  /* Secondary (brand blue) */
+  --secondary: #1E5FA8;
+  --secondary-light: #2C74C9;
+  --secondary-hover: #174b85;
+
+  /* Neutral light */
+  --neutral-light: #F7F8FA;
+  --neutral-surface: #FFFFFF;
+  --neutral-border: #E2E8F0;
+
+  /* Text dark & light */
+  --text-dark: #1A1D24;
+  --text-light: #FFFFFF;
+  --text-soft: #EAEAEA;
+  --text-muted: #64748B;
+
+  /* WhatsApp green */
+  --whatsapp: #25D366;
+  --whatsapp-hover: #20BA5A;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--text-dark);
+  background-color: var(--neutral-light);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B0F1A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C9A24B;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D4AF6A;
+}
