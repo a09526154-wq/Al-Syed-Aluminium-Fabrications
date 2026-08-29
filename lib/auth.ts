@@ -34,6 +34,12 @@ export const auth = betterAuth({
   secret:
     process.env.BETTER_AUTH_SECRET ||
     "al_syed_secret_auth_key_2026_islamabad_pakistan_secure_token",
+  trustedOrigins: [
+    "http://localhost:3000",
+    "https://al-syed-aluminium-fabrications.vercel.app",
+    process.env.NEXT_PUBLIC_APP_URL || "",
+    process.env.BETTER_AUTH_URL || "",
+  ].filter(Boolean),
 });
 
 export type Session = typeof auth.$Infer.Session;
