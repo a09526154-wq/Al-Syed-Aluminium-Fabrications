@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 import {
   ArrowRight,
   ShieldCheck,
@@ -10,12 +11,13 @@ import {
   Layers,
   Clock,
   Phone,
+  Sparkles,
 } from "lucide-react";
 
 // ── Typing animation for the tagline ─────────────────────────────────────────
 const FULL_TEXT = "Quality You Can See, Trust You Can Feel";
-const TYPING_SPEED = 55;  // ms per character
-const START_DELAY = 600;  // ms before typing begins
+const TYPING_SPEED = 55; // ms per character
+const START_DELAY = 600; // ms before typing begins
 
 function useTypingAnimation(text: string) {
   const [displayed, setDisplayed] = useState("");
@@ -44,25 +46,9 @@ function useTypingAnimation(text: string) {
   return { displayed, done };
 }
 
-// ── WhatsApp SVG icon (official logo shape) ───────────────────────────────────
-function WhatsAppIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 32 32"
-      fill="currentColor"
-      className={className}
-      aria-hidden="true"
-    >
-      <path d="M16.004 2.667C8.64 2.667 2.667 8.64 2.667 16c0 2.347.617 4.56 1.693 6.48L2.667 29.333l7.04-1.653A13.28 13.28 0 0016.004 29.333C23.36 29.333 29.333 23.36 29.333 16S23.36 2.667 16.004 2.667zm0 24c-2.107 0-4.08-.573-5.773-1.573l-.413-.24-4.187.987.987-4.08-.267-.427A10.627 10.627 0 015.333 16C5.333 10.12 10.12 5.333 16 5.333S26.667 10.12 26.667 16 21.88 26.667 16.004 26.667zm5.893-7.973c-.32-.16-1.893-.933-2.187-1.04-.293-.107-.507-.16-.72.16-.213.32-.827 1.04-1.013 1.253-.187.213-.373.24-.693.08-.32-.16-1.347-.493-2.56-1.573-.947-.84-1.587-1.88-1.773-2.2-.187-.32-.02-.493.14-.653.147-.147.32-.373.48-.56.16-.187.213-.32.32-.533.107-.213.053-.4-.027-.56-.08-.16-.72-1.733-.987-2.373-.253-.613-.52-.533-.72-.547-.187-.013-.4-.013-.613-.013-.213 0-.56.08-.853.4-.293.32-1.12 1.093-1.12 2.667s1.147 3.093 1.307 3.307c.16.213 2.253 3.44 5.453 4.827.76.333 1.36.533 1.827.68.773.24 1.467.213 2.013.133.613-.093 1.893-.773 2.16-1.52.267-.747.267-1.387.187-1.52-.08-.133-.293-.213-.613-.373z" />
-    </svg>
-  );
-}
-
 // ── Main Component ────────────────────────────────────────────────────────────
 export function HeroSection() {
   const heroRef = useRef<HTMLElement>(null);
-
   const { displayed, done } = useTypingAnimation(FULL_TEXT);
 
   return (
@@ -70,7 +56,7 @@ export function HeroSection() {
       ref={heroRef}
       className="relative min-h-[92vh] lg:min-h-[96vh] flex flex-col justify-between bg-[#0B0F1A] text-white overflow-hidden border-b border-white/10 select-none"
     >
-      {/* ── Background image + clean dark overlay (no glows) ──────────────── */}
+      {/* ── Background image + clean dark overlay ─────────────────────────── */}
       <div className="absolute inset-0 z-0">
         <Image
           src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=85&w=2000&auto=format&fit=crop"
@@ -80,24 +66,26 @@ export function HeroSection() {
           sizes="100vw"
           className="object-cover object-center scale-105"
         />
-        {/* Single clean dark gradient — no coloured glows */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0B0F1A]/80 via-[#0B0F1A]/75 to-[#0B0F1A]" />
+        {/* Single clean dark gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0B0F1A]/85 via-[#0B0F1A]/80 to-[#0B0F1A]" />
+        <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#ffffff15_1px,transparent_1px),linear-gradient(to_bottom,#ffffff15_1px,transparent_1px)] bg-[size:4rem_4rem]" />
       </div>
 
       {/* ── Hero content (centered) ────────────────────────────────────────── */}
       <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
-
-        {/* Location pill */}
-        <div className="inline-flex items-center space-x-2.5 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-8 animate-in fade-in slide-in-from-top-4 duration-700">
-          <span className="relative flex h-2.5 w-2.5">
+        {/* Location & Title Header (Clean floating typography, no card/pill container) */}
+        <div className="flex items-center justify-center space-x-2.5 mb-6 animate-in fade-in slide-in-from-top-3 duration-700">
+          <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-accent" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
           </span>
-          <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-accent">
+          <span className="text-xs sm:text-sm font-bold uppercase tracking-widest text-accent">
             Pak Land City Center, I-8 Markaz, Islamabad
           </span>
-          <span className="text-white/30 hidden sm:inline">•</span>
-          <span className="text-xs text-gray-300 hidden sm:inline font-medium">Architectural Fabricators</span>
+          <span className="text-white/40 hidden sm:inline">•</span>
+          <span className="text-xs sm:text-sm text-gray-300 tracking-wider hidden sm:inline font-semibold uppercase">
+            Architectural Fabricators
+          </span>
         </div>
 
         {/* Main headline */}
@@ -121,41 +109,41 @@ export function HeroSection() {
         </div>
 
         {/* Subtitle */}
-        <p className="mt-8 text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-normal">
+        <p className="mt-6 text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-normal">
           Islamabad & Rawalpindi&rsquo;s premier fabricators of high-performance aluminium windows, frameless tempered glass doors, structural curtain wall facades, and contemporary glass railings.
         </p>
 
-        {/* CTA Buttons */}
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
-
-          {/* Quote CTA */}
+        {/* ── REDESIGNED PROFESSIONAL CTA BUTTONS ─────────────────────────── */}
+        <div className="mt-10 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5 sm:gap-4 w-full max-w-md sm:max-w-none">
+          {/* Button 1: Primary Free Quote CTA */}
           <Link
             href="/quote"
-            className="w-full sm:w-auto inline-flex items-center justify-center space-x-2.5 bg-accent hover:bg-accent-light text-primary font-bold px-8 py-4 rounded-xl text-base transition-all duration-200 hover:-translate-y-0.5"
+            className="group relative inline-flex items-center justify-center space-x-2.5 h-13 sm:h-14 px-7 sm:px-8 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#C9A24B] via-[#D8B45E] to-[#E5C97D] text-[#0B0F1A] font-extrabold text-sm sm:text-base tracking-tight shadow-[0_10px_25px_-5px_rgba(201,162,75,0.35)] hover:shadow-[0_15px_30px_-5px_rgba(201,162,75,0.5)] border border-[#FFE8A3]/50 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
           >
             <span>Request a Free Quote</span>
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-200 group-hover:translate-x-1" />
           </Link>
 
-          {/* WhatsApp CTA — styled like the real WhatsApp brand */}
+          {/* Button 2: Official WhatsApp CTA */}
           <a
             href="https://wa.me/923379289079?text=Hello%20Al%20Syed%20Fabrications,%20I%20would%20like%20to%20inquire%20about%20a%20project."
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center space-x-3 bg-[#25D366] hover:bg-[#20BA5A] text-white font-bold px-7 py-4 rounded-xl text-base transition-all duration-200 hover:-translate-y-0.5"
+            className="group relative inline-flex items-center justify-center space-x-2.5 h-13 sm:h-14 px-6 sm:px-7 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#25D366] to-[#20BA5A] hover:from-[#22bf5b] hover:to-[#1ca44f] text-white font-bold text-sm sm:text-base tracking-tight shadow-[0_10px_25px_-5px_rgba(37,211,102,0.3)] hover:shadow-[0_15px_30px_-5px_rgba(37,211,102,0.45)] border border-[#4AE584]/40 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
           >
-            {/* Official WhatsApp logo SVG */}
-            <WhatsAppIcon className="w-6 h-6 shrink-0" />
+            <WhatsAppIcon className="w-5 h-5 sm:w-5.5 sm:h-5.5 shrink-0 transition-transform duration-200 group-hover:scale-110" />
             <span>Chat on WhatsApp</span>
           </a>
 
-          {/* Phone */}
+          {/* Button 3: Direct Phone Call */}
           <a
             href="tel:+923379289079"
-            className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-4 rounded-xl text-base border border-white/20 backdrop-blur-md transition-all"
+            className="group relative inline-flex items-center justify-center space-x-2.5 h-13 sm:h-14 px-6 sm:px-7 rounded-xl sm:rounded-2xl bg-white/[0.08] hover:bg-white/[0.14] text-white font-bold text-sm sm:text-base tracking-tight border border-white/20 hover:border-white/40 backdrop-blur-md shadow-[0_10px_25px_-5px_rgba(0,0,0,0.3)] hover:shadow-[0_15px_30px_-5px_rgba(0,0,0,0.4)] transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
           >
-            <Phone className="w-4 h-4 text-accent" />
-            <span>0337 9289079</span>
+            <div className="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center text-accent shrink-0 border border-accent/30 group-hover:bg-accent group-hover:text-primary transition-colors">
+              <Phone className="w-3.5 h-3.5" />
+            </div>
+            <span className="font-mono tracking-normal">0337 9289079</span>
           </a>
         </div>
       </div>
