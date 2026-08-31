@@ -113,38 +113,39 @@ export function HeroSection() {
           Islamabad & Rawalpindi&rsquo;s premier fabricators of high-performance aluminium windows, frameless tempered glass doors, structural curtain wall facades, and contemporary glass railings.
         </p>
 
-        {/* ── REDESIGNED PROFESSIONAL CTA BUTTONS ─────────────────────────── */}
-        <div className="mt-10 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5 sm:gap-4 w-full max-w-md sm:max-w-none">
-          {/* Button 1: Primary Free Quote CTA */}
+        {/* ── REDESIGNED PROFESSIONAL CTA BUTTONS (Mobile 2-Tier & Desktop Row) ── */}
+        <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full max-w-sm sm:max-w-none">
+          {/* 1. Primary Action: Free Quote CTA */}
           <Link
             href="/quote"
-            className="group relative inline-flex items-center justify-center space-x-2.5 h-13 sm:h-14 px-7 sm:px-8 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#C9A24B] via-[#D8B45E] to-[#E5C97D] text-[#0B0F1A] font-extrabold text-sm sm:text-base tracking-tight shadow-[0_10px_25px_-5px_rgba(201,162,75,0.35)] hover:shadow-[0_15px_30px_-5px_rgba(201,162,75,0.5)] border border-[#FFE8A3]/50 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+            className="group relative inline-flex items-center justify-center space-x-2 h-12 sm:h-14 px-6 sm:px-8 rounded-xl bg-gradient-to-r from-[#C9A24B] via-[#D8B45E] to-[#E5C97D] text-[#0B0F1A] font-extrabold text-sm sm:text-base tracking-tight shadow-[0_8px_20px_-4px_rgba(201,162,75,0.35)] hover:shadow-[0_12px_25px_-4px_rgba(201,162,75,0.5)] border border-[#FFE8A3]/50 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
           >
             <span>Request a Free Quote</span>
             <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-200 group-hover:translate-x-1" />
           </Link>
 
-          {/* Button 2: Official WhatsApp CTA */}
-          <a
-            href="https://wa.me/923379289079?text=Hello%20Al%20Syed%20Fabrications,%20I%20would%20like%20to%20inquire%20about%20a%20project."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative inline-flex items-center justify-center space-x-2.5 h-13 sm:h-14 px-6 sm:px-7 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#25D366] to-[#20BA5A] hover:from-[#22bf5b] hover:to-[#1ca44f] text-white font-bold text-sm sm:text-base tracking-tight shadow-[0_10px_25px_-5px_rgba(37,211,102,0.3)] hover:shadow-[0_15px_30px_-5px_rgba(37,211,102,0.45)] border border-[#4AE584]/40 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
-          >
-            <WhatsAppIcon className="w-5 h-5 sm:w-5.5 sm:h-5.5 shrink-0 transition-transform duration-200 group-hover:scale-110" />
-            <span>Chat on WhatsApp</span>
-          </a>
+          {/* 2 & 3. Secondary Actions: Side-by-side on Mobile, Inline on Desktop */}
+          <div className="grid grid-cols-2 sm:flex sm:items-center gap-2.5 sm:gap-4">
+            {/* WhatsApp CTA */}
+            <a
+              href="https://wa.me/923379289079?text=Hello%20Al%20Syed%20Fabrications,%20I%20would%20like%20to%20inquire%20about%20a%20project."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative inline-flex items-center justify-center space-x-2 h-12 sm:h-14 px-4 sm:px-6 rounded-xl bg-gradient-to-r from-[#25D366] to-[#20BA5A] hover:from-[#22bf5b] hover:to-[#1ca44f] text-white font-bold text-xs sm:text-base tracking-tight shadow-[0_8px_20px_-4px_rgba(37,211,102,0.3)] hover:shadow-[0_12px_25px_-4px_rgba(37,211,102,0.45)] border border-[#4AE584]/40 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+            >
+              <WhatsAppIcon className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 transition-transform duration-200 group-hover:scale-110" />
+              <span>WhatsApp</span>
+            </a>
 
-          {/* Button 3: Direct Phone Call */}
-          <a
-            href="tel:+923379289079"
-            className="group relative inline-flex items-center justify-center space-x-2.5 h-13 sm:h-14 px-6 sm:px-7 rounded-xl sm:rounded-2xl bg-white/[0.08] hover:bg-white/[0.14] text-white font-bold text-sm sm:text-base tracking-tight border border-white/20 hover:border-white/40 backdrop-blur-md shadow-[0_10px_25px_-5px_rgba(0,0,0,0.3)] hover:shadow-[0_15px_30px_-5px_rgba(0,0,0,0.4)] transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
-          >
-            <div className="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center text-accent shrink-0 border border-accent/30 group-hover:bg-accent group-hover:text-primary transition-colors">
-              <Phone className="w-3.5 h-3.5" />
-            </div>
-            <span className="font-mono tracking-normal">0337 9289079</span>
-          </a>
+            {/* Direct Phone Call */}
+            <a
+              href="tel:+923379289079"
+              className="group relative inline-flex items-center justify-center space-x-2 h-12 sm:h-14 px-3 sm:px-6 rounded-xl bg-white/[0.08] hover:bg-white/[0.14] text-white font-bold text-xs sm:text-base tracking-tight border border-white/20 hover:border-white/40 backdrop-blur-md shadow-[0_8px_20px_-4px_rgba(0,0,0,0.3)] hover:shadow-[0_12px_25px_-4px_rgba(0,0,0,0.4)] transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+            >
+              <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent shrink-0" />
+              <span className="font-mono text-xs sm:text-base whitespace-nowrap">0337 9289079</span>
+            </a>
+          </div>
         </div>
       </div>
 
