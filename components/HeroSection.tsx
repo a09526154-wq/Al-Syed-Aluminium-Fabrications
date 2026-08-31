@@ -59,7 +59,7 @@ export function HeroSection() {
       {/* ── Background image + clean dark overlay ─────────────────────────── */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=85&w=2000&auto=format&fit=crop"
+          src="/hero.jpeg"
           alt="Al Syed Aluminium and Glass Architectural Fabrication"
           fill
           priority
