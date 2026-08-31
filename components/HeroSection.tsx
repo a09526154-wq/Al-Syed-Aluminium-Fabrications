@@ -62,6 +62,8 @@ export function HeroSection() {
           loop
           muted
           playsInline
+          preload="auto"
+          poster="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=1400&auto=format&fit=crop"
           className="w-full h-full object-cover object-center scale-105"
         >
           <source src="/hero.mp4" type="video/mp4" />
