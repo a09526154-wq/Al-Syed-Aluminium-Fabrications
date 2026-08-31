@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 import {
   ArrowRight,
@@ -56,17 +55,18 @@ export function HeroSection() {
       ref={heroRef}
       className="relative min-h-[92vh] lg:min-h-[96vh] flex flex-col justify-between bg-[#0B0F1A] text-white overflow-hidden border-b border-white/10 select-none"
     >
-      {/* ── Background image + clean dark overlay ─────────────────────────── */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=85&w=2000&auto=format&fit=crop"
-          alt="Al Syed Aluminium and Glass Architectural Fabrication"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center scale-105"
-        />
-        {/* Single clean dark gradient overlay */}
+      {/* ── Background Video + clean dark overlay ─────────────────────────── */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover object-center scale-105"
+        >
+          <source src="/hero.mp4" type="video/mp4" />
+        </video>
+        {/* Single clean dark gradient overlay for optimal contrast */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0B0F1A]/85 via-[#0B0F1A]/80 to-[#0B0F1A]" />
         <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#ffffff15_1px,transparent_1px),linear-gradient(to_bottom,#ffffff15_1px,transparent_1px)] bg-[size:4rem_4rem]" />
       </div>
