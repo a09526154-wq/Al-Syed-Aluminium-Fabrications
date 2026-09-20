@@ -213,7 +213,7 @@ export default function AdminQuotesPage() {
               onClick={() => setFilterStatus(st)}
               className={`px-3.5 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors ${
                 filterStatus === st
-                  ? "bg-[#1E5FA8] text-white"
+                  ? "bg-secondary text-white"
                   : "text-text-dark/70 hover:bg-neutral-light"
               }`}
             >
@@ -230,7 +230,7 @@ export default function AdminQuotesPage() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search name, phone, area..."
-            className="w-full pl-9 pr-4 py-2 rounded-xl border border-neutral-border text-xs focus:outline-none focus:border-[#1E5FA8]"
+            className="w-full pl-9 pr-4 py-2 rounded-xl border border-neutral-border text-xs focus:outline-none focus:border-secondary"
           />
         </div>
       </div>
@@ -239,7 +239,7 @@ export default function AdminQuotesPage() {
       <div className="bg-white rounded-2xl border border-neutral-border shadow-xs overflow-hidden">
         {loading ? (
           <div className="p-12 text-center">
-            <Loader2 className="w-6 h-6 animate-spin text-[#1E5FA8] mx-auto mb-2" />
+            <Loader2 className="w-6 h-6 animate-spin text-secondary mx-auto mb-2" />
             <p className="text-xs text-text-dark/60">Loading quote requests...</p>
           </div>
         ) : filteredQuotes.length === 0 ? (
@@ -273,7 +273,7 @@ export default function AdminQuotesPage() {
                         {q.phone}
                       </div>
                     </td>
-                    <td className="p-4 font-semibold text-[#1E5FA8]">
+                    <td className="p-4 font-semibold text-secondary">
                       {q.projectType}
                     </td>
                     <td className="p-4 text-text-dark/70">
@@ -281,7 +281,7 @@ export default function AdminQuotesPage() {
                     </td>
                     <td className="p-4">
                       {q.imageUrls && q.imageUrls.length > 0 ? (
-                        <span className="inline-block px-2 py-0.5 rounded-md bg-blue-50 text-[#1E5FA8] font-bold text-[10px] border border-blue-200">
+                        <span className="inline-block px-2 py-0.5 rounded-md bg-blue-50 text-secondary font-bold text-[10px] border border-blue-200">
                           {q.imageUrls.length} image(s)
                         </span>
                       ) : (
@@ -294,7 +294,7 @@ export default function AdminQuotesPage() {
                         onChange={(e) => handleStatusChange(q.id, e.target.value)}
                         className={`px-2.5 py-1 rounded-lg text-xs font-bold uppercase border font-mono ${
                           q.status === "new"
-                            ? "bg-blue-50 text-[#1E5FA8] border-blue-200"
+                            ? "bg-blue-50 text-secondary border-blue-200"
                             : q.status === "contacted"
                             ? "bg-amber-50 text-amber-700 border-amber-200"
                             : "bg-green-50 text-green-700 border-green-200"
@@ -325,7 +325,7 @@ export default function AdminQuotesPage() {
                       </a>
                       <button
                         onClick={() => setSelectedQuote(q)}
-                        className="inline-flex p-1.5 rounded-lg text-[#1E5FA8] hover:bg-blue-50 transition-colors"
+                        className="inline-flex p-1.5 rounded-lg text-secondary hover:bg-blue-50 transition-colors"
                         title="View Details"
                       >
                         <ChevronRight className="w-4 h-4" />
@@ -354,7 +354,7 @@ export default function AdminQuotesPage() {
           <div className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl border border-neutral-border animate-in fade-in zoom-in duration-200">
             <div className="flex items-center justify-between pb-4 border-b border-neutral-border">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-widest text-[#1E5FA8]">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-secondary">
                   Quote Detail
                 </span>
                 <h3 className="text-xl font-bold text-primary mt-0.5">
@@ -377,7 +377,7 @@ export default function AdminQuotesPage() {
                   <div className="flex items-center space-x-2 mt-1">
                     <a
                       href={`tel:${selectedQuote.phone}`}
-                      className="font-bold text-primary hover:text-[#1E5FA8]"
+                      className="font-bold text-primary hover:text-secondary"
                     >
                       {selectedQuote.phone}
                     </a>
@@ -487,7 +487,7 @@ export default function AdminQuotesPage() {
                 </a>
                 <a
                   href={`tel:${selectedQuote.phone}`}
-                  className="inline-flex items-center space-x-1.5 bg-[#1E5FA8] hover:bg-[#2C74C9] text-white font-bold px-4 py-2 rounded-xl text-xs transition-colors shadow-xs"
+                  className="inline-flex items-center space-x-1.5 bg-secondary hover:bg-secondary-hover text-white font-bold px-4 py-2 rounded-xl text-xs transition-colors shadow-xs"
                 >
                   <Phone className="w-4 h-4" />
                   <span>Call Customer</span>

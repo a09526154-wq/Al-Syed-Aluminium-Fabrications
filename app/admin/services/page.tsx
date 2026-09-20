@@ -267,7 +267,7 @@ export default function AdminServicesPage() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search services..."
-              className="w-full pl-8 pr-3 py-1.5 rounded-lg bg-white border border-neutral-border text-xs focus:outline-none focus:border-[#1E5FA8]"
+              className="w-full pl-8 pr-3 py-1.5 rounded-lg bg-white border border-neutral-border text-xs focus:outline-none focus:border-secondary"
             />
             {searchQuery && (
               <button
@@ -281,7 +281,7 @@ export default function AdminServicesPage() {
 
           <button
             onClick={openCreate}
-            className="inline-flex items-center space-x-1.5 bg-[#1E5FA8] hover:bg-[#2C74C9] text-white font-bold px-4 py-2 rounded-lg text-xs transition-colors shrink-0"
+            className="inline-flex items-center space-x-1.5 bg-secondary hover:bg-secondary-hover text-white font-bold px-4 py-2 rounded-lg text-xs transition-colors shrink-0"
           >
             <Plus className="w-4 h-4" />
             <span>Add Service</span>
@@ -319,7 +319,7 @@ export default function AdminServicesPage() {
       <div className="bg-white rounded-xl border border-neutral-border shadow-xs overflow-hidden">
         {loading ? (
           <div className="p-12 text-center">
-            <Loader2 className="w-6 h-6 animate-spin text-[#1E5FA8] mx-auto mb-2" />
+            <Loader2 className="w-6 h-6 animate-spin text-secondary mx-auto mb-2" />
             <p className="text-xs text-text-dark/60">Loading services...</p>
           </div>
         ) : filteredServices.length === 0 ? (
@@ -343,7 +343,7 @@ export default function AdminServicesPage() {
                 {filteredServices.map((srv) => (
                   <tr key={srv.id} className="hover:bg-neutral-light/50 transition-colors">
                     {/* Order */}
-                    <td className="p-3.5 pl-4 text-center font-mono font-bold text-[#1E5FA8]">
+                    <td className="p-3.5 pl-4 text-center font-mono font-bold text-secondary">
                       #{srv.order}
                     </td>
 
@@ -369,7 +369,7 @@ export default function AdminServicesPage() {
                       <Link
                         href={`/services/${srv.slug}`}
                         target="_blank"
-                        className="inline-flex items-center space-x-1 text-xs text-[#1E5FA8] hover:underline font-semibold"
+                        className="inline-flex items-center space-x-1 text-xs text-secondary hover:underline font-semibold"
                         title="Open service page in new tab"
                       >
                         <span>View Page</span>
@@ -381,7 +381,7 @@ export default function AdminServicesPage() {
                     <td className="p-3.5 pr-4 text-right space-x-2 shrink-0">
                       <button
                         onClick={() => openEdit(srv)}
-                        className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-md text-xs font-semibold bg-blue-50 text-[#1E5FA8] hover:bg-blue-100 transition-colors"
+                        className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-md text-xs font-semibold bg-blue-50 text-secondary hover:bg-blue-100 transition-colors"
                       >
                         <Edit2 className="w-3 h-3" />
                         <span>Edit</span>
@@ -468,11 +468,11 @@ export default function AdminServicesPage() {
                       className="cursor-pointer flex flex-col items-center justify-center space-y-1.5"
                     >
                       {uploadingImage ? (
-                        <Loader2 className="w-6 h-6 animate-spin text-[#1E5FA8]" />
+                        <Loader2 className="w-6 h-6 animate-spin text-secondary" />
                       ) : (
                         <Upload className="w-6 h-6 text-text-dark/40" />
                       )}
-                      <span className="text-xs font-bold text-[#1E5FA8]">
+                      <span className="text-xs font-bold text-secondary">
                         {uploadingImage ? "Uploading to Cloudinary..." : "Click to upload service photo"}
                       </span>
                       <span className="text-[10px] text-text-dark/50">
@@ -488,7 +488,7 @@ export default function AdminServicesPage() {
                   value={imageUrl}
                   onChange={(e) => setImageUrl(e.target.value)}
                   placeholder="Or paste image URL (https://...)"
-                  className="w-full px-3 py-1.5 rounded-lg border border-neutral-border text-[11px] focus:outline-none focus:border-[#1E5FA8]"
+                  className="w-full px-3 py-1.5 rounded-lg border border-neutral-border text-[11px] focus:outline-none focus:border-secondary"
                 />
               </div>
 
@@ -504,7 +504,7 @@ export default function AdminServicesPage() {
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     placeholder="e.g. Aluminium Windows"
-                    className="w-full px-3 py-2 rounded-lg border border-neutral-border text-xs focus:outline-none focus:border-[#1E5FA8]"
+                    className="w-full px-3 py-2 rounded-lg border border-neutral-border text-xs focus:outline-none focus:border-secondary"
                   />
                 </div>
                 <div>
@@ -517,7 +517,7 @@ export default function AdminServicesPage() {
                     min={1}
                     value={order}
                     onChange={(e) => setOrder(Number(e.target.value))}
-                    className="w-full px-3 py-2 rounded-lg border border-neutral-border text-xs font-mono focus:outline-none focus:border-[#1E5FA8]"
+                    className="w-full px-3 py-2 rounded-lg border border-neutral-border text-xs font-mono focus:outline-none focus:border-secondary"
                   />
                 </div>
               </div>
@@ -533,7 +533,7 @@ export default function AdminServicesPage() {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder="Describe the materials, glass types, and applications..."
-                  className="w-full px-3 py-2 rounded-lg border border-neutral-border text-xs focus:outline-none focus:border-[#1E5FA8] leading-relaxed"
+                  className="w-full px-3 py-2 rounded-lg border border-neutral-border text-xs focus:outline-none focus:border-secondary leading-relaxed"
                 />
               </div>
 
@@ -549,7 +549,7 @@ export default function AdminServicesPage() {
                 <button
                   type="submit"
                   disabled={actionLoading || uploadingImage}
-                  className="inline-flex items-center space-x-1.5 px-4 py-2 rounded-lg text-xs font-bold bg-[#1E5FA8] hover:bg-[#2C74C9] text-white transition-colors disabled:opacity-60"
+                  className="inline-flex items-center space-x-1.5 px-4 py-2 rounded-lg text-xs font-bold bg-secondary hover:bg-secondary-hover text-white transition-colors disabled:opacity-60"
                 >
                   {actionLoading ? (
                     <>

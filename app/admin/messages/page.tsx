@@ -124,7 +124,7 @@ export default function AdminMessagesPage() {
       <div className="bg-white rounded-2xl border border-neutral-border shadow-xs overflow-hidden">
         {loading ? (
           <div className="p-12 text-center">
-            <Loader2 className="w-6 h-6 animate-spin text-[#1E5FA8] mx-auto mb-2" />
+            <Loader2 className="w-6 h-6 animate-spin text-secondary mx-auto mb-2" />
             <p className="text-xs text-text-dark/60">Loading messages...</p>
           </div>
         ) : messages.length === 0 ? (
@@ -156,7 +156,7 @@ export default function AdminMessagesPage() {
                         {msg.email}
                       </div>
                       {msg.phone && (
-                        <div className="text-[10px] text-[#1E5FA8] font-mono">
+                        <div className="text-[10px] text-secondary font-mono">
                           {msg.phone}
                         </div>
                       )}
@@ -188,7 +188,7 @@ export default function AdminMessagesPage() {
                     >
                       <button
                         onClick={() => setSelectedMessage(msg)}
-                        className="p-1.5 rounded-lg text-[#1E5FA8] hover:bg-blue-50 transition-colors"
+                        className="p-1.5 rounded-lg text-secondary hover:bg-blue-50 transition-colors"
                         title="View Full Message"
                       >
                         <ChevronRight className="w-4 h-4" />
@@ -215,7 +215,7 @@ export default function AdminMessagesPage() {
           <div className="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-neutral-border animate-in fade-in zoom-in duration-200">
             <div className="flex items-center justify-between pb-4 border-b border-neutral-border">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-widest text-[#1E5FA8]">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-secondary">
                   Contact Message
                 </span>
                 <h3 className="text-lg font-bold text-primary mt-0.5">
@@ -236,7 +236,7 @@ export default function AdminMessagesPage() {
                   <strong>Email:</strong>{" "}
                   <a
                     href={`mailto:${selectedMessage.email}`}
-                    className="text-[#1E5FA8] hover:underline"
+                    className="text-secondary hover:underline"
                   >
                     {selectedMessage.email}
                   </a>
@@ -246,7 +246,7 @@ export default function AdminMessagesPage() {
                     <strong>Phone:</strong>{" "}
                     <a
                       href={`tel:${selectedMessage.phone}`}
-                      className="text-[#1E5FA8] hover:underline"
+                      className="text-secondary hover:underline"
                     >
                       {selectedMessage.phone}
                     </a>
@@ -279,7 +279,7 @@ export default function AdminMessagesPage() {
               <div className="flex items-center space-x-2">
                 <a
                   href={`mailto:${selectedMessage.email}?subject=Re: Inquiring with Al Syed Aluminium Fabrications`}
-                  className="inline-flex items-center space-x-1.5 bg-[#1E5FA8] hover:bg-[#2C74C9] text-white font-bold px-4 py-2 rounded-xl text-xs transition-colors"
+                  className="inline-flex items-center space-x-1.5 bg-secondary hover:bg-secondary-hover text-white font-bold px-4 py-2 rounded-xl text-xs transition-colors"
                 >
                   <Mail className="w-3.5 h-3.5" />
                   <span>Reply via Email</span>

@@ -24,7 +24,7 @@ export async function POST(request: Request) {
     // 2. Send email notification via Resend
     const emailHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
-        <h2 style="color: #0B0F1A; border-bottom: 2px solid #C9A24B; padding-bottom: 10px;">
+        <h2 style="color: #0A192F; border-bottom: 2px solid #2563EB; padding-bottom: 10px;">
           New Contact Message — Al Syed Fabrications
         </h2>
         <p><strong>Name:</strong> ${validatedData.name}</p>

@@ -76,32 +76,35 @@ export function GalleryView({ items }: GalleryViewProps) {
 
   return (
     <div>
-      {/* Category Filter Tabs */}
+      {/* ── Filter Chips ──────────────────────────────── */}
       <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12">
-        {categories.map((cat) => (
-          <button
-            key={cat.value}
-            onClick={() => {
-              setActiveCategory(cat.value);
-              setLightboxIndex(null);
-            }}
-            className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 shadow-xs ${
-              activeCategory === cat.value
-                ? "bg-primary text-accent border border-accent/40 shadow-sm"
-                : "bg-white text-text-dark/70 hover:bg-neutral-light border border-neutral-border hover:text-primary"
-            }`}
-          >
-            {cat.label}
-          </button>
-        ))}
+        {categories.map((cat) => {
+          const isSelected = activeCategory === cat.value;
+          return (
+            <button
+              key={cat.value}
+              onClick={() => {
+                setActiveCategory(cat.value);
+                setLightboxIndex(null);
+              }}
+              className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 ${
+                isSelected
+                  ? "bg-secondary text-white shadow-md"
+                  : "bg-white text-on-surface-variant hover:bg-neutral-100 border border-outline-variant hover:text-on-surface"
+              }`}
+            >
+              {cat.label}
+            </button>
+          );
+        })}
       </div>
 
-      {/* Gallery Grid */}
+      {/* ── Gallery Grid ─────────────────────────────────────────── */}
       {filteredItems.length === 0 ? (
-        <div className="bg-white rounded-2xl p-12 text-center border border-neutral-border max-w-lg mx-auto">
+        <div className="bg-white rounded-2xl p-12 text-center border border-outline-variant max-w-lg mx-auto shadow-sm">
           <Tag className="w-8 h-8 text-secondary mx-auto mb-3 opacity-60" />
-          <h3 className="text-lg font-bold text-primary">No Projects In This Category</h3>
-          <p className="text-xs text-text-dark/70 mt-1">
+          <h3 className="text-lg font-bold text-on-surface">No Projects In This Category</h3>
+          <p className="text-xs text-on-surface-variant mt-1">
             Check back soon or select &ldquo;All Projects&rdquo; to view our full fabrication portfolio.
           </p>
         </div>
@@ -117,9 +120,9 @@ export function GalleryView({ items }: GalleryViewProps) {
               <div
                 key={item.id}
                 onClick={() => openLightbox(index)}
-                className="group relative rounded-2xl overflow-hidden bg-neutral-light border border-neutral-border shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer"
+                className="group relative rounded-2xl overflow-hidden bg-white border border-outline-variant shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer"
               >
-                <div className="relative h-72 w-full overflow-hidden">
+                <div className="relative h-72 w-full overflow-hidden bg-neutral-100">
                   <Image
                     src={optimizedUrl}
                     alt={`${item.title} - ${item.projectType} aluminium & glass fabrication by Al Syed Islamabad`}
@@ -128,21 +131,24 @@ export function GalleryView({ items }: GalleryViewProps) {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/20 to-transparent opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex items-center justify-center">
-                    <div className="w-12 h-12 rounded-full bg-accent/90 text-primary flex items-center justify-center shadow-lg transform scale-75 group-hover:scale-100 transition-transform">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80" />
+                  
+                  {/* Hover icon */}
+                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full bg-secondary text-white flex items-center justify-center shadow-md transform scale-75 group-hover:scale-100 transition-transform">
                       <Maximize2 className="w-5 h-5" />
                     </div>
                   </div>
                 </div>
 
-                <div className="absolute bottom-0 inset-x-0 p-5 text-white bg-gradient-to-t from-primary/95 via-primary/70 to-transparent">
-                  <span className="inline-block px-2.5 py-0.5 rounded-md bg-accent text-primary text-[10px] font-bold uppercase tracking-wider mb-1.5">
+                <div className="absolute bottom-0 inset-x-0 p-5 text-white">
+                  <span className="inline-block px-2.5 py-0.5 rounded-md bg-secondary text-white text-[10px] font-bold uppercase tracking-wider mb-1.5">
                     {item.category}
                   </span>
-                  <h3 className="text-sm sm:text-base font-bold text-white line-clamp-1">
+                  <h3 className="text-sm sm:text-base font-bold text-white group-hover:text-secondary-light transition-colors line-clamp-1">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-text-soft/80 mt-0.5">
+                  <p className="text-xs text-white/80 mt-0.5">
                     {item.projectType}
                   </p>
                 </div>
@@ -152,7 +158,7 @@ export function GalleryView({ items }: GalleryViewProps) {
         </div>
       )}
 
-      {/* Lightbox Modal */}
+      {/* ── Lightbox Modal ────────────────────────────────────────── */}
       {lightboxIndex !== null && filteredItems[lightboxIndex] && (
         <div
           className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6"
@@ -191,37 +197,32 @@ export function GalleryView({ items }: GalleryViewProps) {
             <ChevronRight className="w-6 h-6" />
           </button>
 
-          {/* Lightbox Content */}
+          {/* Image Container */}
           <div
-            className="relative max-w-5xl w-full max-h-[85vh] flex flex-col items-center justify-center"
+            className="relative w-full max-w-5xl h-[80vh]"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative w-full h-[65vh] sm:h-[75vh] rounded-2xl overflow-hidden border border-white/10 bg-primary-surface shadow-2xl">
-              <Image
-                src={getOptimizedCloudinaryUrl(
-                  filteredItems[lightboxIndex].imageUrl,
-                  "f_auto,q_auto,w_1600"
-                )}
-                alt={filteredItems[lightboxIndex].title}
-                fill
-                sizes="100vw"
-                className="object-contain"
-              />
-            </div>
-
-            {/* Caption Strip */}
-            <div className="w-full bg-primary/80 backdrop-blur-md p-4 mt-3 rounded-xl border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-white">
-              <div>
-                <span className="text-[10px] font-bold uppercase tracking-widest text-accent">
-                  {filteredItems[lightboxIndex].category} • {filteredItems[lightboxIndex].projectType}
-                </span>
-                <h4 className="text-sm sm:text-base font-bold">
-                  {filteredItems[lightboxIndex].title}
-                </h4>
-              </div>
-              <span className="text-xs text-text-soft/70 font-mono">
-                {lightboxIndex + 1} of {filteredItems.length}
+            <Image
+              src={getOptimizedCloudinaryUrl(
+                filteredItems[lightboxIndex].imageUrl,
+                "f_auto,q_auto,w_1600"
+              )}
+              alt={filteredItems[lightboxIndex].title}
+              fill
+              className="object-contain"
+              sizes="100vw"
+              priority
+            />
+            <div className="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-black/80 to-transparent text-center">
+              <span className="inline-block px-2.5 py-0.5 rounded-md bg-secondary text-white text-[10px] font-bold uppercase tracking-wider mb-2">
+                {filteredItems[lightboxIndex].category}
               </span>
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-1">
+                {filteredItems[lightboxIndex].title}
+              </h3>
+              <p className="text-sm text-slate-300">
+                {filteredItems[lightboxIndex].projectType}
+              </p>
             </div>
           </div>
         </div>

@@ -5,16 +5,12 @@ import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 import {
-  FileText,
   Upload,
   X,
   CheckCircle2,
   AlertCircle,
   Loader2,
-  Phone,
   ArrowRight,
-  ShieldCheck,
-  MapPin,
 } from "lucide-react";
 
 export function QuoteForm() {
@@ -25,7 +21,7 @@ export function QuoteForm() {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [projectType, setProjectType] = useState(
-    initialService ? decodeURIComponent(initialService) : "Aluminium Windows"
+    initialService ? decodeURIComponent(initialService) : "Aluminium Windows (Sliding/Casement)"
   );
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("Islamabad");
@@ -126,35 +122,35 @@ export function QuoteForm() {
 
   if (submittedQuoteId) {
     return (
-      <div className="bg-white rounded-3xl p-8 sm:p-12 shadow-md border border-neutral-border text-center max-w-2xl mx-auto animate-in fade-in zoom-in duration-300">
-        <div className="w-16 h-16 bg-green-50 text-whatsapp rounded-full flex items-center justify-center mx-auto mb-6 border border-green-200 shadow-sm">
+      <div className="bg-white rounded-2xl p-8 sm:p-12 shadow-lg border border-outline-variant text-center max-w-2xl mx-auto animate-in fade-in zoom-in duration-300">
+        <div className="w-16 h-16 bg-green-50 text-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-green-200">
           <CheckCircle2 className="w-9 h-9" />
         </div>
 
-        <span className="text-xs font-bold uppercase tracking-widest text-secondary">
+        <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary">
           Request Received
         </span>
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-primary mt-1">
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-on-surface mt-2">
           Thank You, {name}!
         </h2>
-        <p className="text-sm text-text-dark/80 mt-3 max-w-md mx-auto leading-relaxed">
+        <p className="text-sm text-on-surface-variant mt-3 max-w-md mx-auto leading-relaxed">
           Your quote inquiry for <strong>{projectType}</strong> has been sent to our fabrication team at Pak Land City Center, I-8 Markaz, Islamabad.
         </p>
 
-        <div className="my-8 p-6 bg-neutral-light rounded-2xl border border-neutral-border text-left space-y-2 text-xs text-text-dark/80">
-          <p><strong>Contact Phone:</strong> {phone}</p>
-          <p><strong>Location:</strong> {location}</p>
+        <div className="my-8 p-6 bg-neutral-50 rounded-xl border border-outline-variant text-left space-y-3 text-sm text-on-surface">
+          <p><strong className="text-on-surface-variant">Contact Phone:</strong> {phone}</p>
+          <p><strong className="text-on-surface-variant">Location:</strong> {location}</p>
           {imageUrls.length > 0 && (
-            <p><strong>Attached Photos:</strong> {imageUrls.length} file(s) uploaded</p>
+            <p><strong className="text-on-surface-variant">Attached Photos:</strong> {imageUrls.length} file(s) uploaded</p>
           )}
-          <p className="text-text-dark/60 pt-2 border-t border-neutral-border">
+          <p className="text-xs text-on-surface-variant pt-3 border-t border-outline-variant">
             Our engineers will review your measurements and respond shortly.
           </p>
         </div>
 
         {/* WhatsApp Fast-Track Button */}
-        <div className="space-y-3">
-          <p className="text-xs font-semibold text-text-dark/70">
+        <div className="space-y-4">
+          <p className="text-xs font-bold uppercase text-on-surface-variant tracking-wider">
             Need faster assistance or immediate on-site measurement?
           </p>
           <a
@@ -163,10 +159,10 @@ export function QuoteForm() {
             )}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full inline-flex items-center justify-center space-x-2 bg-whatsapp hover:bg-whatsapp-hover text-white font-bold py-3.5 px-6 rounded-xl text-sm transition-all shadow-md"
+            className="w-full inline-flex items-center justify-center space-x-2.5 bg-green-500 hover:bg-green-600 text-white font-semibold h-14 px-8 rounded-full text-sm transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0"
           >
             <WhatsAppIcon className="w-5 h-5 shrink-0" />
-            <span>Message Us Directly on WhatsApp: 0337 9289079</span>
+            <span>Message Us Directly on WhatsApp</span>
           </a>
         </div>
       </div>
@@ -174,31 +170,32 @@ export function QuoteForm() {
   }
 
   return (
-    <div className="bg-white rounded-3xl p-8 sm:p-12 shadow-sm border border-neutral-border">
+    <div className="bg-white rounded-2xl p-8 sm:p-12 shadow-lg border border-outline-variant">
       <div className="mb-8">
-        <span className="text-xs font-bold uppercase tracking-widest text-secondary">
+        <span className="text-xs font-bold uppercase tracking-[0.15em] text-secondary block mb-2">
           No Obligation Consultation
         </span>
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-primary mt-1">
-          Request Your Free Fabrication Estimate
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-on-surface">
+          Request Your Free Estimate
         </h2>
-        <p className="text-xs sm:text-sm text-text-dark/70 mt-2">
-          Fill out the details below. Attach drawings or site photos if available.
+        <p className="text-sm text-on-surface-variant mt-2 leading-relaxed">
+          Provide your approximate dimensions or attach site photos. We offer free on-site laser measurements in Islamabad &amp; Rawalpindi.
         </p>
       </div>
 
       {error && (
-        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-xs sm:text-sm flex items-start space-x-3">
-          <AlertCircle className="w-5 h-5 shrink-0 mt-0.5" />
+        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-xs font-semibold flex items-center space-x-2.5">
+          <AlertCircle className="w-4 h-4 shrink-0" />
           <span>{error}</span>
         </div>
       )}
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {/* Name */}
+        
+        {/* Personal Details */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-text-dark mb-2">
+            <label className="block text-xs font-bold text-on-surface uppercase tracking-wider mb-2">
               Full Name *
             </label>
             <input
@@ -206,15 +203,14 @@ export function QuoteForm() {
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="e.g. Tariq Mehmood"
-              className="w-full px-4 py-3 rounded-xl border border-neutral-border bg-neutral-light/50 text-sm focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/15"
+              placeholder="e.g. Engr. Asad Ullah"
+              className="w-full px-4 py-3.5 rounded-xl border border-outline-variant bg-neutral-50 text-on-surface text-sm focus:outline-none focus:border-secondary focus:bg-white focus:ring-1 focus:ring-secondary transition-colors"
             />
           </div>
 
-          {/* Phone */}
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-text-dark mb-2">
-              Phone / WhatsApp Number *
+            <label className="block text-xs font-bold text-on-surface uppercase tracking-wider mb-2">
+              Phone Number *
             </label>
             <input
               type="tel"
@@ -222,134 +218,132 @@ export function QuoteForm() {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="0337 9289079"
-              className="w-full px-4 py-3 rounded-xl border border-neutral-border bg-neutral-light/50 text-sm focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/15"
+              className="w-full px-4 py-3.5 rounded-xl border border-outline-variant bg-neutral-50 text-on-surface text-sm focus:outline-none focus:border-secondary focus:bg-white focus:ring-1 focus:ring-secondary transition-colors"
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {/* Email */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-text-dark mb-2">
+            <label className="block text-xs font-bold text-on-surface uppercase tracking-wider mb-2">
               Email Address (Optional)
             </label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="client@gmail.com"
-              className="w-full px-4 py-3 rounded-xl border border-neutral-border bg-neutral-light/50 text-sm focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/15"
+              placeholder="asad@example.com"
+              className="w-full px-4 py-3.5 rounded-xl border border-outline-variant bg-neutral-50 text-on-surface text-sm focus:outline-none focus:border-secondary focus:bg-white focus:ring-1 focus:ring-secondary transition-colors"
             />
           </div>
 
-          {/* Project Type */}
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-text-dark mb-2">
-              Service / Project Type *
+            <label className="block text-xs font-bold text-on-surface uppercase tracking-wider mb-2">
+              Project Location *
             </label>
-            <select
-              value={projectType}
-              onChange={(e) => setProjectType(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl border border-neutral-border bg-neutral-light/50 text-sm focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/15"
-            >
-              {serviceOptions.map((opt) => (
-                <option key={opt} value={opt}>
-                  {opt}
-                </option>
-              ))}
-            </select>
+            <input
+              type="text"
+              required
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+              placeholder="e.g. F-8/2, Islamabad"
+              className="w-full px-4 py-3.5 rounded-xl border border-outline-variant bg-neutral-50 text-on-surface text-sm focus:outline-none focus:border-secondary focus:bg-white focus:ring-1 focus:ring-secondary transition-colors"
+            />
           </div>
         </div>
 
-        {/* Location */}
+        {/* Service Type Selection */}
         <div>
-          <label className="block text-xs font-bold uppercase tracking-wider text-text-dark mb-2">
-            Project Location / City *
+          <label className="block text-xs font-bold text-on-surface uppercase tracking-wider mb-2">
+            Primary Fabrication Service *
           </label>
-          <input
-            type="text"
+          <select
             required
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-            placeholder="e.g. I-8/4, Islamabad / Bahria Town Phase 7, Rawalpindi"
-            className="w-full px-4 py-3 rounded-xl border border-neutral-border bg-neutral-light/50 text-sm focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/15"
-          />
+            value={projectType}
+            onChange={(e) => setProjectType(e.target.value)}
+            className="w-full px-4 py-3.5 rounded-xl border border-outline-variant bg-neutral-50 text-on-surface text-sm focus:outline-none focus:border-secondary focus:bg-white focus:ring-1 focus:ring-secondary transition-colors appearance-none cursor-pointer"
+            style={{
+              backgroundImage: 'url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M7%2010L12%2015L17%2010%22%20stroke%3D%22%23666666%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E")',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'right 12px center',
+            }}
+          >
+            <option value="" disabled>Select a fabrication service...</option>
+            {serviceOptions.map((opt) => (
+              <option key={opt} value={opt}>
+                {opt}
+              </option>
+            ))}
+          </select>
         </div>
 
-        {/* Description */}
+        {/* Project Description */}
         <div>
-          <label className="block text-xs font-bold uppercase tracking-wider text-text-dark mb-2">
-            Project Details & Approximate Dimensions *
+          <label className="block text-xs font-bold text-on-surface uppercase tracking-wider mb-2">
+            Project Description &amp; Dimensions *
           </label>
           <textarea
             required
-            rows={4}
+            rows={5}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="Describe your requirements (number of windows, sliding vs casement, glass thickness, dimensions in feet/inches)..."
-            className="w-full px-4 py-3 rounded-xl border border-neutral-border bg-neutral-light/50 text-sm focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/15"
+            placeholder="Please provide rough dimensions (Width x Height), quantity, glass preferences (e.g. 12mm tempered), and aluminium profile series (e.g. 1.6mm Chawla / Prime)..."
+            className="w-full px-4 py-3.5 rounded-xl border border-outline-variant bg-neutral-50 text-on-surface text-sm focus:outline-none focus:border-secondary focus:bg-white focus:ring-1 focus:ring-secondary transition-colors leading-relaxed resize-none"
           />
         </div>
 
-        {/* Image / Attachment Upload */}
-        <div>
-          <label className="block text-xs font-bold uppercase tracking-wider text-text-dark mb-2">
-            Upload Drawings or Site Photos (Cloudinary Upload)
-          </label>
-          <div className="border-2 border-dashed border-neutral-border hover:border-secondary/50 rounded-2xl p-6 text-center transition-colors bg-neutral-light/30">
-            <input
-              type="file"
-              id="file-upload"
-              multiple
-              accept="image/*"
-              onChange={handleImageUpload}
-              className="hidden"
-            />
-            <label
-              htmlFor="file-upload"
-              className="cursor-pointer flex flex-col items-center justify-center space-y-2"
-            >
-              <div className="w-10 h-10 rounded-full bg-secondary/10 text-secondary flex items-center justify-center">
-                <Upload className="w-5 h-5" />
-              </div>
-              <p className="text-xs font-semibold text-primary">
-                Click to browse photos or drawings
+        {/* Image Upload Area */}
+        <div className="bg-neutral-50 p-6 rounded-xl border border-dashed border-outline-variant transition-colors hover:border-secondary/50">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+            <div>
+              <h4 className="text-sm font-bold text-on-surface">Attach Site Photos / Architectural Drawings</h4>
+              <p className="text-xs text-on-surface-variant mt-1 max-w-sm leading-relaxed">
+                Visualizing the masonry opening or site layout helps our engineers provide a 100% accurate quote. (Optional)
               </p>
-              <p className="text-[11px] text-text-dark/60">
-                Supports JPG, PNG, WEBP (Multiple uploads supported)
-              </p>
+            </div>
+            
+            <label className={`
+              shrink-0 inline-flex items-center space-x-2 px-5 py-2.5 rounded-full border text-sm font-semibold cursor-pointer transition-colors
+              ${uploadingImage 
+                ? 'bg-neutral-100 border-outline-variant text-on-surface-variant cursor-not-allowed' 
+                : 'bg-white border-secondary/30 text-secondary hover:bg-secondary/5 hover:border-secondary'
+              }
+            `}>
+              {uploadingImage ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <Upload className="w-4 h-4" />
+              )}
+              <span>{uploadingImage ? "Uploading..." : "Upload Photos"}</span>
+              <input
+                type="file"
+                multiple
+                accept="image/*"
+                className="hidden"
+                onChange={handleImageUpload}
+                disabled={uploadingImage}
+              />
             </label>
           </div>
 
-          {/* Upload Progress Indicator */}
-          {uploadingImage && (
-            <div className="flex items-center space-x-2 text-xs text-secondary mt-3">
-              <Loader2 className="w-4 h-4 animate-spin" />
-              <span>Uploading photo to secure cloud storage...</span>
-            </div>
-          )}
-
-          {/* Uploaded Thumbnails Preview */}
+          {/* Uploaded Images Preview Grid */}
           {imageUrls.length > 0 && (
-            <div className="flex flex-wrap gap-3 mt-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4 pt-4 border-t border-outline-variant/50">
               {imageUrls.map((url, idx) => (
-                <div
-                  key={idx}
-                  className="relative w-20 h-20 rounded-xl overflow-hidden border border-neutral-border bg-neutral-light group"
-                >
+                <div key={idx} className="relative group rounded-lg overflow-hidden bg-white border border-outline-variant aspect-square">
                   <Image
                     src={url}
-                    alt={`Attachment ${idx + 1}`}
+                    alt={`Attached layout ${idx + 1}`}
                     fill
                     className="object-cover"
                   />
                   <button
                     type="button"
                     onClick={() => removeImage(idx)}
-                    className="absolute top-1 right-1 bg-red-600 text-white rounded-full p-1 shadow-sm opacity-90 hover:opacity-100"
-                    aria-label="Remove photo"
+                    className="absolute top-1.5 right-1.5 p-1.5 bg-black/60 hover:bg-red-600 text-white rounded-full backdrop-blur-sm transition-colors opacity-0 group-hover:opacity-100"
+                    aria-label="Remove image"
                   >
-                    <X className="w-3 h-3" />
+                    <X className="w-3.5 h-3.5" />
                   </button>
                 </div>
               ))}
@@ -358,27 +352,28 @@ export function QuoteForm() {
         </div>
 
         {/* Submit Button */}
-        <button
-          type="submit"
-          disabled={submitting || uploadingImage}
-          className="w-full inline-flex items-center justify-center space-x-2 bg-accent hover:bg-accent-light text-primary font-bold py-4 px-6 rounded-xl text-base transition-all duration-200 shadow-md hover:shadow-lg disabled:opacity-70"
-        >
-          {submitting ? (
-            <>
-              <Loader2 className="w-5 h-5 animate-spin" />
-              <span>Submitting Quote Request...</span>
-            </>
-          ) : (
-            <>
-              <span>Submit Request for Free Quote</span>
-              <ArrowRight className="w-5 h-5" />
-            </>
-          )}
-        </button>
-
-        <div className="flex items-center justify-center space-x-2 text-xs text-text-muted pt-2">
-          <ShieldCheck className="w-4 h-4 text-secondary" />
-          <span>Your privacy is guaranteed. No spam, ever.</span>
+        <div className="pt-4 border-t border-outline-variant">
+          <button
+            type="submit"
+            disabled={submitting || uploadingImage}
+            className="w-full inline-flex items-center justify-center space-x-2 bg-secondary hover:bg-secondary-hover text-white font-semibold h-14 rounded-full text-base transition-all duration-200 shadow-md hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer hover:-translate-y-0.5 active:translate-y-0"
+          >
+            {submitting ? (
+              <>
+                <Loader2 className="w-5 h-5 animate-spin" />
+                <span>Processing Quote Request...</span>
+              </>
+            ) : (
+              <>
+                <span>Submit for Free Estimate</span>
+                <ArrowRight className="w-5 h-5" />
+              </>
+            )}
+          </button>
+          
+          <p className="text-center text-[11px] text-on-surface-variant mt-4 leading-relaxed">
+            By submitting this request, you agree that an engineer from Al Syed Fabrications may contact you regarding your architectural requirements. We never share your data.
+          </p>
         </div>
       </form>
     </div>

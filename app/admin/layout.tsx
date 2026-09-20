@@ -11,7 +11,6 @@ import {
   MessageSquare,
   Image as ImageIcon,
   Layers,
-  ShoppingBag,
   Star,
   Settings,
   LogOut,
@@ -19,8 +18,6 @@ import {
   Menu,
   X,
   Shield,
-  Loader2,
-  Building,
 } from "lucide-react";
 
 export default function AdminLayout({
@@ -30,12 +27,12 @@ export default function AdminLayout({
 }) {
   const pathname = usePathname();
   const router = useRouter();
-  const { data: session, isPending } = useSession();
+  const { data: session } = useSession();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // If on login page, render clean container without dashboard sidebar
   if (pathname === "/admin/login") {
-    return <div className="min-h-screen bg-neutral-light">{children}</div>;
+    return <div className="min-h-screen bg-surface-dim">{children}</div>;
   }
 
   const handleSignOut = async () => {
@@ -62,15 +59,13 @@ export default function AdminLayout({
   const userRole = session?.user?.role || "staff";
 
   return (
-    <div className="h-screen overflow-hidden bg-[#F7F8FA] flex flex-col lg:flex-row text-text-dark font-sans">
-      {/* ============================================================ */}
-      {/* DESKTOP SIDEBAR */}
-      {/* ============================================================ */}
-      <aside className="hidden lg:flex flex-col w-64 h-screen bg-white border-r border-neutral-border shadow-xs shrink-0 select-none sticky top-0 overflow-y-auto">
+    <div className="h-screen overflow-hidden bg-surface-dim flex flex-col lg:flex-row text-on-surface font-sans">
+      {/* ── Desktop Sidebar ───────────────────────────────────────── */}
+      <aside className="hidden lg:flex flex-col w-64 h-screen bg-surface border-r border-outline-variant elevation-1 shrink-0 select-none sticky top-0 overflow-y-auto">
         {/* Brand Header */}
-        <div className="h-20 flex items-center px-6 border-b border-neutral-border bg-white">
+        <div className="h-20 flex items-center px-6 border-b border-outline-variant bg-surface">
           <Link href="/admin" className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-[#1E5FA8]/50 shadow-sm shrink-0">
+            <div className="w-10 h-10 rounded-m3-md overflow-hidden border-2 border-secondary/40 shrink-0">
               <Image
                 src="/logo.jpeg"
                 alt="Al Syed Logo"
@@ -80,10 +75,10 @@ export default function AdminLayout({
               />
             </div>
             <div className="flex flex-col">
-              <span className="font-bold text-sm text-primary tracking-tight leading-tight">
+              <span className="font-bold text-sm text-on-surface tracking-tight leading-tight">
                 Al Syed Admin
               </span>
-              <span className="text-[10px] font-semibold text-[#1E5FA8] tracking-wider uppercase">
+              <span className="text-[10px] font-semibold text-secondary tracking-wider uppercase">
                 I-8 Markaz Portal
               </span>
             </div>
@@ -91,22 +86,22 @@ export default function AdminLayout({
         </div>
 
         {/* User Mini Profile */}
-        <div className="p-4 mx-4 my-4 rounded-xl bg-neutral-light border border-neutral-border">
+        <div className="p-4 mx-4 my-4 rounded-m3-md bg-surface-container-low border border-outline-variant">
           <div className="flex items-center justify-between mb-1">
-            <span className="text-xs font-bold text-primary truncate max-w-[120px]">
+            <span className="text-xs font-bold text-on-surface truncate max-w-[120px]">
               {session?.user?.name || "Administrator"}
             </span>
             <span
-              className={`text-[9px] font-bold uppercase px-2 py-0.5 rounded-md font-mono ${
+              className={`text-[9px] font-bold uppercase px-2 py-0.5 rounded-m3-sm font-mono ${
                 userRole === "admin"
-                  ? "bg-[#C9A24B]/20 text-[#8a6b24] border border-[#C9A24B]/40"
-                  : "bg-blue-100 text-[#1E5FA8] border border-blue-200"
+                  ? "bg-secondary-container text-on-secondary-container border border-secondary/30"
+                  : "bg-surface-container text-on-surface-variant border border-outline-variant"
               }`}
             >
               {userRole}
             </span>
           </div>
-          <p className="text-[11px] text-text-dark/60 truncate">
+          <p className="text-[11px] text-on-surface-variant/70 truncate">
             {session?.user?.email || "alsyedaluminium@gmail.com"}
           </p>
         </div>
@@ -121,27 +116,27 @@ export default function AdminLayout({
                 : pathname.startsWith(link.href);
 
             if (link.adminOnly && userRole !== "admin") {
-              return null; // Hide admin-only links from staff
+              return null;
             }
 
             return (
               <Link
                 key={link.name}
                 href={link.href}
-                className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all duration-150 ${
+                className={`flex items-center justify-between px-3.5 py-2.5 rounded-m3-xl text-xs font-semibold transition-all duration-150 ${
                   isActive
-                    ? "bg-[#1E5FA8] text-white shadow-sm font-bold"
-                    : "text-text-dark/70 hover:bg-neutral-light hover:text-[#1E5FA8]"
+                    ? "bg-secondary text-white elevation-1 font-bold"
+                    : "text-on-surface-variant hover:bg-surface-container-low hover:text-secondary"
                 }`}
               >
                 <div className="flex items-center space-x-3">
-                  <Icon className={`w-4 h-4 ${isActive ? "text-white" : "text-text-muted"}`} />
+                  <Icon className={`w-4 h-4 ${isActive ? "text-white" : "text-on-surface-variant"}`} />
                   <span>{link.name}</span>
                 </div>
                 {link.adminOnly && (
                   <span
-                    className={`text-[9px] uppercase px-1.5 py-0.5 rounded font-mono ${
-                      isActive ? "bg-white/20 text-white" : "bg-neutral-border text-text-dark/60"
+                    className={`text-[9px] uppercase px-1.5 py-0.5 rounded-m3-sm font-mono ${
+                      isActive ? "bg-white/20 text-white" : "bg-outline-variant text-on-surface-variant"
                     }`}
                   >
                     Admin
@@ -153,18 +148,18 @@ export default function AdminLayout({
         </nav>
 
         {/* Bottom Sidebar Footer */}
-        <div className="p-4 border-t border-neutral-border space-y-2">
+        <div className="p-4 border-t border-outline-variant space-y-2">
           <Link
             href="/"
             target="_blank"
-            className="w-full flex items-center justify-center space-x-2 px-3 py-2 text-xs font-medium text-text-dark/70 hover:text-primary hover:bg-neutral-light rounded-xl transition-colors"
+            className="w-full flex items-center justify-center space-x-2 px-3 py-2 text-xs font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low rounded-m3-xl transition-colors"
           >
             <ExternalLink className="w-3.5 h-3.5" />
             <span>View Public Website</span>
           </Link>
           <button
             onClick={handleSignOut}
-            className="w-full flex items-center justify-center space-x-2 px-3 py-2 text-xs font-semibold text-red-600 hover:bg-red-50 rounded-xl transition-colors"
+            className="w-full flex items-center justify-center space-x-2 px-3 py-2 text-xs font-semibold text-red-600 hover:bg-red-50 rounded-m3-xl transition-colors cursor-pointer"
           >
             <LogOut className="w-3.5 h-3.5" />
             <span>Sign Out</span>
@@ -172,12 +167,10 @@ export default function AdminLayout({
         </div>
       </aside>
 
-      {/* ============================================================ */}
-      {/* MOBILE TOP BAR */}
-      {/* ============================================================ */}
-      <div className="lg:hidden bg-white border-b border-neutral-border px-4 py-3 flex items-center justify-between">
+      {/* ── Mobile Top Bar ────────────────────────────────────────── */}
+      <div className="lg:hidden bg-surface border-b border-outline-variant px-4 py-3 flex items-center justify-between">
         <Link href="/admin" className="flex items-center space-x-2.5">
-          <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-[#1E5FA8]/50 shrink-0">
+          <div className="w-8 h-8 rounded-m3-sm overflow-hidden border-2 border-secondary/40 shrink-0">
             <Image
               src="/logo.jpeg"
               alt="Al Syed Logo"
@@ -186,13 +179,13 @@ export default function AdminLayout({
               className="object-cover w-full h-full"
             />
           </div>
-          <span className="font-bold text-sm text-primary">Al Syed Admin</span>
+          <span className="font-bold text-sm text-on-surface">Al Syed Admin</span>
         </Link>
 
         <div className="flex items-center space-x-2">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-lg bg-neutral-light border border-neutral-border text-text-dark"
+            className="p-2 rounded-m3-md bg-surface-container-low border border-outline-variant text-on-surface"
             aria-label="Toggle navigation"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -202,7 +195,7 @@ export default function AdminLayout({
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white border-b border-neutral-border px-4 py-3 space-y-1">
+        <div className="lg:hidden bg-surface border-b border-outline-variant px-4 py-3 space-y-1">
           {navLinks.map((link) => {
             const Icon = link.icon;
             const isActive =
@@ -217,10 +210,10 @@ export default function AdminLayout({
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`flex items-center space-x-3 px-3 py-2.5 rounded-lg text-xs font-semibold ${
+                className={`flex items-center space-x-3 px-3 py-2.5 rounded-m3-md text-xs font-semibold ${
                   isActive
-                    ? "bg-[#1E5FA8] text-white"
-                    : "text-text-dark/80 hover:bg-neutral-light"
+                    ? "bg-secondary text-white"
+                    : "text-on-surface-variant hover:bg-surface-container-low"
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -228,18 +221,18 @@ export default function AdminLayout({
               </Link>
             );
           })}
-          <div className="pt-3 mt-2 border-t border-neutral-border flex items-center justify-between">
+          <div className="pt-3 mt-2 border-t border-outline-variant flex items-center justify-between">
             <Link
               href="/"
               target="_blank"
-              className="text-xs font-medium text-[#1E5FA8] flex items-center space-x-1"
+              className="text-xs font-medium text-secondary flex items-center space-x-1"
             >
               <ExternalLink className="w-3.5 h-3.5" />
               <span>Public Website</span>
             </Link>
             <button
               onClick={handleSignOut}
-              className="text-xs font-semibold text-red-600 flex items-center space-x-1"
+              className="text-xs font-semibold text-red-600 flex items-center space-x-1 cursor-pointer"
             >
               <LogOut className="w-3.5 h-3.5" />
               <span>Sign Out</span>
@@ -248,35 +241,33 @@ export default function AdminLayout({
         </div>
       )}
 
-      {/* ============================================================ */}
-      {/* MAIN CONTENT AREA */}
-      {/* ============================================================ */}
+      {/* ── Main Content Area ─────────────────────────────────────── */}
       <main className="flex-1 flex flex-col min-w-0 overflow-x-hidden h-screen overflow-y-auto">
         {/* Top Header Bar */}
-        <header className="hidden lg:flex items-center justify-between h-20 px-8 bg-white border-b border-neutral-border sticky top-0 z-10 shrink-0">
+        <header className="hidden lg:flex items-center justify-between h-20 px-8 bg-surface border-b border-outline-variant sticky top-0 z-10 shrink-0 elevation-1">
           <div>
-            <h1 className="text-lg font-bold text-primary">
+            <h1 className="text-lg font-bold text-on-surface">
               Management Portal
             </h1>
-            <p className="text-xs text-text-dark/60">
+            <p className="text-xs text-on-surface-variant">
               Pak Land City Center, Office No. 05, I-8 Markaz, Islamabad
             </p>
           </div>
 
           <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2 text-xs bg-neutral-light px-3 py-1.5 rounded-lg border border-neutral-border">
-              <Shield className="w-3.5 h-3.5 text-[#1E5FA8]" />
-              <span className="font-semibold text-text-dark/80">
+            <div className="flex items-center space-x-2 text-xs bg-surface-container-low px-3 py-1.5 rounded-m3-md border border-outline-variant">
+              <Shield className="w-3.5 h-3.5 text-secondary" />
+              <span className="font-semibold text-on-surface-variant">
                 Logged in as:
               </span>
-              <span className="font-mono font-bold text-primary">
+              <span className="font-mono font-bold text-on-surface">
                 {session?.user?.email || "Admin"}
               </span>
             </div>
             <Link
               href="/"
               target="_blank"
-              className="inline-flex items-center space-x-1.5 text-xs font-semibold text-[#1E5FA8] hover:text-[#2C74C9] bg-blue-50 px-3 py-1.5 rounded-lg border border-blue-200 transition-colors"
+              className="inline-flex items-center space-x-1.5 text-xs font-semibold text-on-secondary-container hover:text-secondary bg-secondary-container px-3 py-1.5 rounded-m3-md border border-secondary/20 transition-colors"
             >
               <ExternalLink className="w-3.5 h-3.5" />
               <span>Live Site</span>

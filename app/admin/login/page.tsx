@@ -59,74 +59,74 @@ function LoginForm() {
   };
 
   return (
-    <div className="w-full max-w-md p-6 sm:p-10">
+    <div className="w-full max-w-md p-6 sm:p-10 bg-white rounded-3xl shadow-xl border border-outline-variant/30">
       {/* Mobile Brand Header */}
       <div className="lg:hidden text-center mb-8">
-        <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-[#1E5FA8]/50 shadow-md mx-auto mb-3">
+        <div className="w-16 h-16 rounded-full overflow-hidden border border-outline-variant shadow-sm mx-auto mb-4 bg-white p-1">
           <Image
             src="/logo.jpeg"
             alt="Al Syed Logo"
             width={64}
             height={64}
-            className="object-cover w-full h-full"
+            className="object-contain w-full h-full rounded-full"
           />
         </div>
-        <h1 className="text-xl font-extrabold text-primary">
+        <h1 className="text-xl font-extrabold text-on-surface">
           Al Syed Fabrications
         </h1>
-        <p className="text-xs text-text-dark/60">Admin Management Portal</p>
+        <p className="text-xs text-on-surface-variant font-medium mt-1">Admin Management Portal</p>
       </div>
 
       {/* Form Header */}
-      <div className="mb-8">
-        <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-blue-50 text-[#1E5FA8] text-xs font-bold uppercase tracking-wider mb-2">
+      <div className="mb-8 hidden lg:block text-center">
+        <div className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-secondary/10 text-secondary text-[11px] font-bold uppercase tracking-[0.15em] mb-4">
           <Sparkles className="w-3.5 h-3.5" />
           <span>Management Portal</span>
         </div>
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-primary tracking-tight">
-          Welcome back
+        <h2 className="text-3xl font-extrabold text-on-surface tracking-tight">
+          Welcome Back
         </h2>
-        <p className="text-xs sm:text-sm text-text-dark/60 mt-1">
-          Enter your authorized credentials to access the admin dashboard.
+        <p className="text-sm text-on-surface-variant mt-2 leading-relaxed">
+          Enter your authorized credentials to securely access the admin dashboard.
         </p>
       </div>
 
       {/* Error Alert */}
       {error && (
-        <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 flex items-start space-x-3 text-red-700 text-xs font-medium animate-in fade-in">
+        <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 flex items-start space-x-3 text-red-700 text-xs font-semibold animate-in fade-in zoom-in-95">
           <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-red-600" />
           <span>{error}</span>
         </div>
       )}
 
       {/* Form */}
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-5">
         <div>
-          <label className="block text-xs font-bold text-text-dark mb-1.5">
+          <label className="block text-xs font-bold uppercase tracking-wider text-on-surface mb-2">
             Admin Email Address
           </label>
           <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-text-dark/40">
-              <Mail className="w-4 h-4" />
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-on-surface-variant/70">
+              <Mail className="w-5 h-5" />
             </div>
             <input
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="alsyedaluminium@gmail.com"
-              className="w-full pl-10 pr-4 py-3 rounded-xl border border-neutral-border bg-neutral-light/50 text-text-dark text-xs sm:text-sm focus:outline-none focus:border-[#1E5FA8] focus:bg-white transition-colors"
+              placeholder="admin@alsyedfabrications.com"
+              className="w-full pl-11 pr-4 py-3.5 rounded-xl border border-outline-variant bg-neutral-50 text-on-surface text-sm focus:outline-none focus:border-secondary focus:bg-white focus:ring-1 focus:ring-secondary transition-all"
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-xs font-bold text-text-dark mb-1.5">
+          <label className="block text-xs font-bold uppercase tracking-wider text-on-surface mb-2">
             Password
           </label>
           <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-text-dark/40">
-              <Lock className="w-4 h-4" />
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-on-surface-variant/70">
+              <Lock className="w-5 h-5" />
             </div>
             <input
               type={showPassword ? "text" : "password"}
@@ -134,17 +134,17 @@ function LoginForm() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••••••"
-              className="w-full pl-10 pr-10 py-3 rounded-xl border border-neutral-border bg-neutral-light/50 text-text-dark text-xs sm:text-sm focus:outline-none focus:border-[#1E5FA8] focus:bg-white transition-colors"
+              className="w-full pl-11 pr-12 py-3.5 rounded-xl border border-outline-variant bg-neutral-50 text-on-surface text-sm focus:outline-none focus:border-secondary focus:bg-white focus:ring-1 focus:ring-secondary transition-all"
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-text-dark/40 hover:text-text-dark"
+              className="absolute inset-y-0 right-0 pr-4 flex items-center text-on-surface-variant hover:text-secondary transition-colors"
             >
               {showPassword ? (
-                <EyeOff className="w-4 h-4" />
+                <EyeOff className="w-5 h-5" />
               ) : (
-                <Eye className="w-4 h-4" />
+                <Eye className="w-5 h-5" />
               )}
             </button>
           </div>
@@ -153,32 +153,32 @@ function LoginForm() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full mt-2 inline-flex items-center justify-center space-x-2 bg-primary hover:bg-[#0F1420] text-accent font-bold py-3.5 px-4 rounded-xl text-xs sm:text-sm transition-all duration-200 shadow-md hover:shadow-lg disabled:opacity-70 cursor-pointer"
+          className="w-full mt-2 inline-flex items-center justify-center space-x-2.5 bg-secondary hover:bg-secondary-hover text-white font-bold h-14 px-6 rounded-full text-sm transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-70 disabled:cursor-not-allowed"
         >
           {loading ? (
             <>
-              <Loader2 className="w-4 h-4 animate-spin" />
-              <span>Verifying credentials...</span>
+              <Loader2 className="w-5 h-5 animate-spin" />
+              <span>Verifying...</span>
             </>
           ) : (
             <>
               <span>Sign In to Dashboard</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-5 h-5" />
             </>
           )}
         </button>
       </form>
 
       {/* Security Footer */}
-      <div className="mt-8 pt-6 border-t border-neutral-border text-center space-y-3">
-        <div className="flex items-center justify-center space-x-2 text-[11px] text-text-dark/60">
-          <ShieldCheck className="w-4 h-4 text-accent" />
+      <div className="mt-8 pt-6 border-t border-outline-variant text-center space-y-4">
+        <div className="flex items-center justify-center space-x-2 text-xs font-medium text-on-surface-variant">
+          <ShieldCheck className="w-4 h-4 text-secondary" />
           <span>Role-Based Access Control • SSL Encrypted</span>
         </div>
         <div>
           <Link
             href="/"
-            className="text-xs font-semibold text-[#1E5FA8] hover:underline"
+            className="text-xs font-bold text-secondary hover:text-secondary-hover uppercase tracking-wider transition-colors"
           >
             ← Return to Public Website
           </Link>
@@ -192,100 +192,105 @@ export default function AdminLoginPage() {
   return (
     <div className="min-h-screen grid grid-cols-1 lg:grid-cols-12 bg-white">
       {/* Left Column: Visual Architectural Showcase (Desktop) */}
-      <div className="hidden lg:flex lg:col-span-6 xl:col-span-7 relative bg-[#0B0F1A] text-white p-12 flex-col justify-between overflow-hidden">
-        {/* Background Image with Dark Overlay */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=85&w=2000&auto=format&fit=crop"
-            alt="Al Syed Aluminium & Glass Fabrication Workshop"
-            fill
-            priority
-            sizes="50vw"
-            className="object-cover object-center opacity-30 scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F1A] via-[#0B0F1A]/80 to-[#0B0F1A]/60" />
-          <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(to_right,#ffffff15_1px,transparent_1px),linear-gradient(to_bottom,#ffffff15_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+      <div className="hidden lg:flex lg:col-span-5 xl:col-span-6 relative bg-white flex-col justify-between overflow-hidden border-r border-outline-variant/30">
+        {/* Background Image with Light Overlay */}
+        <div className="absolute inset-0 z-0 p-6 pb-0">
+          <div className="relative w-full h-full rounded-t-3xl overflow-hidden shadow-inner">
+            <Image
+              src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=85&w=1500&auto=format&fit=crop"
+              alt="Al Syed Aluminium & Glass Fabrication Workshop"
+              fill
+              priority
+              sizes="50vw"
+              className="object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-white/40" />
+            <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent" />
+          </div>
         </div>
 
         {/* Top Brand Tag */}
-        <div className="relative z-10 flex items-center space-x-3.5">
-          <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-accent/50 shadow-md shrink-0">
+        <div className="relative z-10 p-12 flex items-center space-x-4">
+          <div className="w-14 h-14 rounded-full overflow-hidden border border-outline-variant/30 bg-white shadow-md p-1 shrink-0">
             <Image
               src="/logo.jpeg"
               alt="Al Syed Logo"
-              width={48}
-              height={48}
-              className="object-cover w-full h-full"
+              width={56}
+              height={56}
+              className="object-contain w-full h-full rounded-full"
             />
           </div>
           <div>
-            <span className="font-extrabold text-base tracking-tight text-white block">
+            <span className="font-extrabold text-xl tracking-tight text-on-surface block">
               AL SYED
             </span>
-            <span className="text-[10px] font-semibold text-accent tracking-widest uppercase">
-              Aluminium & Glass Fabrications
+            <span className="text-[10px] font-bold text-secondary tracking-[0.15em] uppercase">
+              Aluminium &amp; Glass
             </span>
           </div>
         </div>
 
         {/* Center Quotation / Mission */}
-        <div className="relative z-10 max-w-lg space-y-4 my-auto py-12">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-accent text-xs font-semibold uppercase tracking-wider">
-            <Building2 className="w-3.5 h-3.5" />
-            <span>Pak Land City Center, I-8 Markaz, Islamabad</span>
+        <div className="relative z-10 max-w-lg space-y-6 px-12 py-8 mt-auto">
+          <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-white border border-outline-variant shadow-sm text-on-surface text-[11px] font-bold uppercase tracking-wider">
+            <Building2 className="w-4 h-4 text-secondary" />
+            <span>Pak Land City Center, I-8 Markaz</span>
           </div>
-          <h2 className="text-3xl xl:text-4xl font-extrabold text-white tracking-tight leading-tight">
-            &ldquo;Quality You Can See, <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-[#F3E5AB] to-accent-light">
-              Trust You Can Feel
-            </span>
-            &rdquo;
+          <h2 className="text-4xl xl:text-5xl font-extrabold text-on-surface tracking-tight leading-tight [text-shadow:_0_1px_2px_rgba(255,255,255,0.8)]">
+            Quality You Can See, <br />
+            <span className="text-secondary">Trust You Can Feel</span>
           </h2>
-          <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-normal">
+          <p className="text-sm text-on-surface-variant leading-relaxed font-medium max-w-md">
             Manage quote inquiries, project portfolio gallery uploads, fabrication service catalogs, and live customer reviews from one centralized portal.
           </p>
 
-          <div className="grid grid-cols-2 gap-3 pt-4 text-xs text-gray-300">
-            <div className="flex items-center space-x-2">
-              <CheckCircle2 className="w-4 h-4 text-accent shrink-0" />
-              <span>Real-Time Quote Inbox</span>
+          <div className="grid grid-cols-2 gap-4 pt-4 text-xs font-semibold text-on-surface-variant">
+            <div className="flex items-center space-x-2.5">
+              <CheckCircle2 className="w-4 h-4 text-secondary shrink-0" />
+              <span>Real-Time Inbox</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <CheckCircle2 className="w-4 h-4 text-accent shrink-0" />
-              <span>Gallery Cloudinary Sync</span>
+            <div className="flex items-center space-x-2.5">
+              <CheckCircle2 className="w-4 h-4 text-secondary shrink-0" />
+              <span>Cloudinary Sync</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <CheckCircle2 className="w-4 h-4 text-accent shrink-0" />
-              <span>Service Catalog Editor</span>
+            <div className="flex items-center space-x-2.5">
+              <CheckCircle2 className="w-4 h-4 text-secondary shrink-0" />
+              <span>Service Editor</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <CheckCircle2 className="w-4 h-4 text-accent shrink-0" />
-              <span>Testimonials Moderation</span>
+            <div className="flex items-center space-x-2.5">
+              <CheckCircle2 className="w-4 h-4 text-secondary shrink-0" />
+              <span>Live Reviews</span>
             </div>
           </div>
         </div>
 
         {/* Bottom Footer Info */}
-        <div className="relative z-10 pt-6 border-t border-white/10 flex items-center justify-between text-[11px] text-gray-400">
+        <div className="relative z-10 p-12 pt-6 flex items-center justify-between text-[11px] font-bold uppercase tracking-widest text-on-surface-variant border-t border-outline-variant/30 mt-8">
           <span>Engineering Hub: 0337 9289079</span>
           <span>Islamabad • Rawalpindi</span>
         </div>
       </div>
 
       {/* Right Column: Clean Login Form */}
-      <div className="lg:col-span-6 xl:col-span-5 flex items-center justify-center bg-white p-4 sm:p-8">
-        <Suspense
-          fallback={
-            <div className="w-full max-w-md p-10 flex flex-col items-center justify-center">
-              <Loader2 className="w-8 h-8 animate-spin text-[#1E5FA8] mb-3" />
-              <p className="text-xs text-text-dark/70">
-                Loading Admin Sign In...
-              </p>
-            </div>
-          }
-        >
-          <LoginForm />
-        </Suspense>
+      <div className="lg:col-span-7 xl:col-span-6 flex items-center justify-center bg-neutral-50 p-4 sm:p-8 relative overflow-hidden">
+        {/* Subtle background decoration */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+        
+        <div className="w-full max-w-md relative z-10">
+          <Suspense
+            fallback={
+              <div className="w-full p-12 flex flex-col items-center justify-center bg-white rounded-3xl shadow-xl border border-outline-variant/30">
+                <Loader2 className="w-8 h-8 animate-spin text-secondary mb-4" />
+                <p className="text-xs font-bold uppercase tracking-wider text-on-surface-variant">
+                  Loading Admin Sign In...
+                </p>
+              </div>
+            }
+          >
+            <LoginForm />
+          </Suspense>
+        </div>
       </div>
     </div>
   );

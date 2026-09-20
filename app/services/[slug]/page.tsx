@@ -13,20 +13,11 @@ import {
   ArrowRight,
   Phone,
   Layers,
-  Sparkles,
-  ArrowLeft,
   Settings2,
   FileCheck2,
-  Maximize2,
   Ruler,
   Clock,
   Award,
-  Check,
-  Building2,
-  DoorOpen,
-  PanelTop,
-  Bath,
-  HelpCircle,
 } from "lucide-react";
 
 interface ServiceDetailPageProps {
@@ -289,7 +280,7 @@ export default async function ServiceDetailPage({
         "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop";
 
   return (
-    <div className="flex flex-col min-h-screen bg-neutral-light">
+    <div className="flex flex-col min-h-screen">
       <ServiceJsonLd
         name={service.title}
         description={service.description}
@@ -297,9 +288,9 @@ export default async function ServiceDetailPage({
       />
 
       {/* ============================================================ */}
-      {/* 1. HERO HEADER WITH BREADCRUMB & METRIC PILLS */}
+      {/* 1. HERO HEADER */}
       {/* ============================================================ */}
-      <section className="relative bg-[#0B0F1A] text-white py-16 lg:py-24 border-b border-white/10 overflow-hidden">
+      <section className="relative text-white pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
         {/* Background Image Layer */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -308,15 +299,15 @@ export default async function ServiceDetailPage({
             fill
             priority
             sizes="100vw"
-            className="object-cover object-center opacity-25 scale-105"
+            className="object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F1A] via-[#0B0F1A]/85 to-[#0B0F1A]" />
-          <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(to_right,#ffffff15_1px,transparent_1px),linear-gradient(to_bottom,#ffffff15_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/25 to-black/60" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Breadcrumb back link */}
-          <div className="flex items-center space-x-2 text-xs font-semibold text-gray-400 mb-6">
+          {/* Breadcrumb */}
+          <div className="flex items-center space-x-2 text-xs font-semibold text-white/80 mb-6 [text-shadow:_0_1px_4px_rgba(0,0,0,0.8)]">
             <Link href="/" className="hover:text-white transition-colors">
               Home
             </Link>
@@ -325,41 +316,38 @@ export default async function ServiceDetailPage({
               Services
             </Link>
             <span>/</span>
-            <span className="text-accent">{service.title}</span>
+            <span className="text-secondary-light font-bold">{service.title}</span>
           </div>
 
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-accent text-xs font-semibold uppercase tracking-wider mb-4">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>I-8 Markaz Master Fabrication Specification</span>
-            </div>
-
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
+          <div className="max-w-4xl">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-secondary-light mb-4 [text-shadow:_0_1px_6px_rgba(0,0,0,0.8)]">
+              I-8 Markaz Master Fabrication Specification
+            </p>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight [text-shadow:_0_2px_12px_rgba(0,0,0,0.85)]">
               {service.title}
             </h1>
-
-            <p className="text-base sm:text-lg text-gray-300 mt-4 leading-relaxed">
+            <p className="text-base sm:text-lg text-white mt-5 leading-relaxed max-w-2xl [text-shadow:_0_1px_8px_rgba(0,0,0,0.85)]">
               {service.description}
             </p>
           </div>
 
           {/* Quick Metrics Bar */}
-          <div className="mt-10 pt-6 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl text-xs sm:text-sm">
+          <div className="mt-14 pt-6 border-t border-white/20 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl text-xs sm:text-sm">
             <div className="flex items-center space-x-2">
-              <CheckCircle2 className="w-4 h-4 text-accent shrink-0" />
-              <span className="text-gray-200">6063-T6 Structural Alloy</span>
+              <CheckCircle2 className="w-5 h-5 text-secondary-light shrink-0" />
+              <span className="text-white font-medium [text-shadow:_0_1px_4px_rgba(0,0,0,0.8)]">6063-T6 Structural Alloy</span>
             </div>
             <div className="flex items-center space-x-2">
-              <CheckCircle2 className="w-4 h-4 text-accent shrink-0" />
-              <span className="text-gray-200">100% Tempered Glass</span>
+              <CheckCircle2 className="w-5 h-5 text-secondary-light shrink-0" />
+              <span className="text-white font-medium [text-shadow:_0_1px_4px_rgba(0,0,0,0.8)]">100% Tempered Glass</span>
             </div>
             <div className="flex items-center space-x-2">
-              <CheckCircle2 className="w-4 h-4 text-accent shrink-0" />
-              <span className="text-gray-200">Laser Precision Fit</span>
+              <CheckCircle2 className="w-5 h-5 text-secondary-light shrink-0" />
+              <span className="text-white font-medium [text-shadow:_0_1px_4px_rgba(0,0,0,0.8)]">Laser Precision Fit</span>
             </div>
             <div className="flex items-center space-x-2">
-              <CheckCircle2 className="w-4 h-4 text-accent shrink-0" />
-              <span className="text-gray-200">On-Time Handover</span>
+              <CheckCircle2 className="w-5 h-5 text-secondary-light shrink-0" />
+              <span className="text-white font-medium [text-shadow:_0_1px_4px_rgba(0,0,0,0.8)]">On-Time Handover</span>
             </div>
           </div>
         </div>
@@ -368,55 +356,54 @@ export default async function ServiceDetailPage({
       {/* ============================================================ */}
       {/* 2. MAIN CONTENT & SPECS SPLIT LAYOUT */}
       {/* ============================================================ */}
-      <section className="py-16 lg:py-24 bg-white">
+      <section className="py-20 lg:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             
             {/* Left Column (8 cols): Specifications & Details */}
-            <div className="lg:col-span-8 space-y-12">
+            <div className="lg:col-span-8 space-y-16">
               
               {/* Engineering Overview */}
               <div>
-                <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-50 text-[#1E5FA8] text-xs font-bold uppercase tracking-wider mb-3">
-                  <span>Engineering Standard</span>
-                </div>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-primary mb-4 tracking-tight">
-                  Design Architecture & Fabrication Capabilities
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-on-surface mb-6 tracking-tight">
+                  Design Architecture &amp; Fabrication Capabilities
                 </h2>
-                <p className="text-sm sm:text-base text-text-dark/80 leading-relaxed mb-4">
-                  At <strong>Al Syed Aluminium and Glass Fabrications</strong>, our {service.title.toLowerCase()} systems are manufactured using heavy-gauge 6063-T6 architectural grade aluminium profiles and certified tempered safety glass. Designed specifically to withstand local climate conditions in Islamabad and Rawalpindi, our systems deliver superior acoustic dampening, weatherproofing, and modern aesthetics.
-                </p>
-                <p className="text-sm sm:text-base text-text-dark/80 leading-relaxed">
-                  Every order is custom-fabricated in our I-8 Markaz workshop according to exact architectural dimensions, offering versatile powder-coated, anodized, and wood-finish textures.
-                </p>
+                <div className="space-y-4 text-base text-on-surface-variant leading-relaxed">
+                  <p>
+                    At <strong>Al Syed Aluminium and Glass Fabrications</strong>, our {service.title.toLowerCase()} systems are manufactured using heavy-gauge 6063-T6 architectural grade aluminium profiles and certified tempered safety glass. Designed specifically to withstand local climate conditions in Islamabad and Rawalpindi, our systems deliver superior acoustic dampening, weatherproofing, and modern aesthetics.
+                  </p>
+                  <p>
+                    Every order is custom-fabricated in our I-8 Markaz workshop according to exact architectural dimensions, offering versatile powder-coated, anodized, and wood-finish textures.
+                  </p>
+                </div>
               </div>
 
               {/* System Variations Grid */}
               <div>
-                <h3 className="text-xl sm:text-2xl font-bold text-primary mb-6 tracking-tight flex items-center space-x-2">
-                  <Layers className="w-5 h-5 text-secondary" />
-                  <span>Available Configurations & System Options</span>
+                <h3 className="text-xl sm:text-2xl font-bold text-on-surface mb-6 tracking-tight flex items-center space-x-3">
+                  <Layers className="w-6 h-6 text-secondary" />
+                  <span>Available Configurations</span>
                 </h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   {currentVariations.map((v, idx) => (
                     <div
                       key={idx}
-                      className="bg-neutral-light/70 p-6 rounded-2xl border border-neutral-border hover:border-secondary/40 hover:shadow-md transition-all duration-300 flex flex-col justify-between"
+                      className="bg-neutral-50 p-6 rounded-2xl border border-outline-variant hover:border-secondary hover:shadow-md transition-all duration-300 flex flex-col justify-between"
                     >
                       <div>
-                        <div className="flex items-center justify-between mb-3">
-                          <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-white border border-neutral-border text-secondary font-mono">
+                        <div className="flex items-center justify-between mb-4">
+                          <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-white border border-outline-variant text-secondary font-mono">
                             {v.tag}
                           </span>
-                          <span className="text-xs font-mono font-bold text-text-dark/40">
+                          <span className="text-sm font-mono font-bold text-on-surface-variant">
                             0{idx + 1}
                           </span>
                         </div>
-                        <h4 className="text-base font-bold text-primary mb-2">
+                        <h4 className="text-base font-bold text-on-surface mb-2">
                           {v.title}
                         </h4>
-                        <p className="text-xs sm:text-sm text-text-dark/70 leading-relaxed">
+                        <p className="text-sm text-on-surface-variant leading-relaxed">
                           {v.desc}
                         </p>
                       </div>
@@ -426,72 +413,72 @@ export default async function ServiceDetailPage({
               </div>
 
               {/* Technical Specifications Grid */}
-              <div className="bg-neutral-light p-6 sm:p-8 rounded-3xl border border-neutral-border space-y-6">
-                <div className="flex items-center justify-between border-b border-neutral-border pb-4">
-                  <h3 className="text-lg sm:text-xl font-bold text-primary flex items-center space-x-2">
+              <div className="bg-neutral-50 p-6 sm:p-8 rounded-2xl border border-outline-variant space-y-6">
+                <div className="flex items-center justify-between border-b border-outline-variant pb-4">
+                  <h3 className="text-lg sm:text-xl font-bold text-on-surface flex items-center space-x-2">
                     <Settings2 className="w-5 h-5 text-secondary" />
                     <span>Technical Material Standards</span>
                   </h3>
-                  <span className="text-xs font-bold px-2.5 py-1 rounded-md bg-secondary/10 text-secondary uppercase font-mono">
-                    Pak Land I-8 Standard
+                  <span className="hidden sm:inline-block text-xs font-bold px-2.5 py-1 rounded-md bg-white border border-outline-variant text-on-surface uppercase font-mono">
+                    I-8 Standard
                   </span>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="p-4 bg-white rounded-2xl border border-neutral-border shadow-2xs space-y-1">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div className="p-5 bg-white rounded-xl border border-outline-variant space-y-1 hover:border-secondary/30 transition-colors">
                     <span className="text-[11px] font-bold uppercase text-secondary tracking-wider">Aluminium Alloy</span>
-                    <p className="text-sm font-bold text-primary">6063-T6 Architectural Grade</p>
-                    <p className="text-xs text-text-dark/60">Tensile yield 214 MPa, extreme structural rigidity</p>
+                    <p className="text-sm font-bold text-on-surface">6063-T6 Architectural Grade</p>
+                    <p className="text-xs text-on-surface-variant">Tensile yield 214 MPa, extreme structural rigidity</p>
                   </div>
 
-                  <div className="p-4 bg-white rounded-2xl border border-neutral-border shadow-2xs space-y-1">
+                  <div className="p-5 bg-white rounded-xl border border-outline-variant space-y-1 hover:border-secondary/30 transition-colors">
                     <span className="text-[11px] font-bold uppercase text-secondary tracking-wider">Safety Glass Range</span>
-                    <p className="text-sm font-bold text-primary">8mm, 10mm, 12mm & Double Glazed (DGU)</p>
-                    <p className="text-xs text-text-dark/60">Shatterproof safety certified, tinted & reflective options</p>
+                    <p className="text-sm font-bold text-on-surface">8mm, 10mm, 12mm &amp; DGU</p>
+                    <p className="text-xs text-on-surface-variant">Shatterproof safety certified, tinted &amp; reflective options</p>
                   </div>
 
-                  <div className="p-4 bg-white rounded-2xl border border-neutral-border shadow-2xs space-y-1">
-                    <span className="text-[11px] font-bold uppercase text-secondary tracking-wider">Gaskets & Sealing</span>
-                    <p className="text-sm font-bold text-primary">High-Density EPDM & Neutral Silicon</p>
-                    <p className="text-xs text-text-dark/60">Continuous compression seal against dust & heavy rain</p>
+                  <div className="p-5 bg-white rounded-xl border border-outline-variant space-y-1 hover:border-secondary/30 transition-colors">
+                    <span className="text-[11px] font-bold uppercase text-secondary tracking-wider">Gaskets &amp; Sealing</span>
+                    <p className="text-sm font-bold text-on-surface">High-Density EPDM &amp; Silicon</p>
+                    <p className="text-xs text-on-surface-variant">Continuous compression seal against dust &amp; heavy rain</p>
                   </div>
 
-                  <div className="p-4 bg-white rounded-2xl border border-neutral-border shadow-2xs space-y-1">
+                  <div className="p-5 bg-white rounded-xl border border-outline-variant space-y-1 hover:border-secondary/30 transition-colors">
                     <span className="text-[11px] font-bold uppercase text-secondary tracking-wider">Surface Coatings</span>
-                    <p className="text-sm font-bold text-primary">Electrostatic Powder Coat / Anodized</p>
-                    <p className="text-xs text-text-dark/60">Matt Black, Charcoal, Bronze, White & Wood Finishes</p>
+                    <p className="text-sm font-bold text-on-surface">Powder Coat / Anodized</p>
+                    <p className="text-xs text-on-surface-variant">Matt Black, Charcoal, Bronze, White &amp; Wood Finishes</p>
                   </div>
                 </div>
               </div>
 
-              {/* Quality Standards & Trust Markers */}
+              {/* Quality Standards */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-                <div className="p-5 rounded-2xl bg-white border border-neutral-border shadow-xs space-y-2">
-                  <div className="w-9 h-9 rounded-xl bg-accent/15 text-accent flex items-center justify-center">
-                    <Ruler className="w-4 h-4" />
+                <div className="p-6 rounded-2xl bg-white border border-outline-variant hover:shadow-md transition-shadow text-center">
+                  <div className="w-12 h-12 mx-auto rounded-xl bg-secondary/10 text-secondary flex items-center justify-center mb-4">
+                    <Ruler className="w-6 h-6" />
                   </div>
-                  <h4 className="font-bold text-sm text-primary">Zero-Gap Sizing</h4>
-                  <p className="text-xs text-text-dark/70 leading-relaxed">
+                  <h4 className="font-bold text-sm text-on-surface mb-2">Zero-Gap Sizing</h4>
+                  <p className="text-xs text-on-surface-variant leading-relaxed">
                     Laser measurement to fit masonry openings with zero gap tolerance.
                   </p>
                 </div>
 
-                <div className="p-5 rounded-2xl bg-white border border-neutral-border shadow-xs space-y-2">
-                  <div className="w-9 h-9 rounded-xl bg-secondary/15 text-secondary flex items-center justify-center">
-                    <ShieldCheck className="w-4 h-4" />
+                <div className="p-6 rounded-2xl bg-white border border-outline-variant hover:shadow-md transition-shadow text-center">
+                  <div className="w-12 h-12 mx-auto rounded-xl bg-secondary/10 text-secondary flex items-center justify-center mb-4">
+                    <ShieldCheck className="w-6 h-6" />
                   </div>
-                  <h4 className="font-bold text-sm text-primary">Structural Safety</h4>
-                  <p className="text-xs text-text-dark/70 leading-relaxed">
+                  <h4 className="font-bold text-sm text-on-surface mb-2">Structural Safety</h4>
+                  <p className="text-xs text-on-surface-variant leading-relaxed">
                     Engineered to meet wind load and impact resistance benchmarks.
                   </p>
                 </div>
 
-                <div className="p-5 rounded-2xl bg-white border border-neutral-border shadow-xs space-y-2">
-                  <div className="w-9 h-9 rounded-xl bg-green-50 text-whatsapp flex items-center justify-center">
-                    <Clock className="w-4 h-4" />
+                <div className="p-6 rounded-2xl bg-white border border-outline-variant hover:shadow-md transition-shadow text-center">
+                  <div className="w-12 h-12 mx-auto rounded-xl bg-green-50 text-green-600 flex items-center justify-center mb-4">
+                    <Clock className="w-6 h-6" />
                   </div>
-                  <h4 className="font-bold text-sm text-primary">Punctual Handover</h4>
-                  <p className="text-xs text-text-dark/70 leading-relaxed">
+                  <h4 className="font-bold text-sm text-on-surface mb-2">Punctual Handover</h4>
+                  <p className="text-xs text-on-surface-variant leading-relaxed">
                     Reliable workshop scheduling with dedicated on-site installation crews.
                   </p>
                 </div>
@@ -499,14 +486,14 @@ export default async function ServiceDetailPage({
 
               {/* Recent Installation Photos */}
               <div>
-                <h3 className="text-xl sm:text-2xl font-bold text-primary mb-6 tracking-tight">
-                  Recent Project Photos & Installations
+                <h3 className="text-xl sm:text-2xl font-bold text-on-surface mb-6 tracking-tight">
+                  Recent Project Photos &amp; Installations
                 </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   {projectPhotos.map((photo) => (
                     <div
                       key={photo.id}
-                      className="group relative h-64 rounded-2xl overflow-hidden bg-neutral-light border border-neutral-border shadow-sm"
+                      className="group relative h-64 rounded-2xl overflow-hidden bg-neutral-100 border border-outline-variant"
                     >
                       <Image
                         src={photo.imageUrl}
@@ -516,10 +503,10 @@ export default async function ServiceDetailPage({
                         sizes="(max-width: 768px) 100vw, 50vw"
                         className="object-cover group-hover:scale-105 transition-transform duration-700"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F1A]/90 via-[#0B0F1A]/20 to-transparent opacity-80" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80" />
                       <div className="absolute bottom-4 left-4 right-4 text-white">
                         <p className="text-sm font-bold">{photo.title}</p>
-                        <p className="text-[11px] text-accent uppercase font-mono mt-0.5">{photo.projectType}</p>
+                        <p className="text-[11px] text-secondary-light uppercase font-mono mt-0.5">{photo.projectType}</p>
                       </div>
                     </div>
                   ))}
@@ -530,24 +517,23 @@ export default async function ServiceDetailPage({
 
             {/* Right Column (4 cols): Sticky Consultation & Quote Drawer */}
             <div className="lg:col-span-4">
-              <div className="sticky top-28 bg-[#0B0F1A] text-white p-8 rounded-3xl border border-white/10 shadow-2xl space-y-6">
+              <div className="sticky top-28 bg-white border border-outline-variant rounded-2xl p-6 sm:p-8 shadow-xl shadow-black/5 space-y-6">
                 <div>
-                  <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-white/10 text-accent text-xs font-semibold uppercase tracking-wider mb-2">
-                    <Sparkles className="w-3.5 h-3.5" />
-                    <span>Direct Consultation</span>
-                  </div>
-                  <h3 className="text-2xl font-extrabold text-white mt-1">
-                    Request a Quote for {service.title}
+                  <p className="text-xs font-bold uppercase tracking-wider text-secondary mb-2">
+                    Direct Consultation
+                  </p>
+                  <h3 className="text-2xl font-extrabold text-on-surface">
+                    Request a Quote
                   </h3>
-                  <p className="text-xs text-gray-300 mt-2 leading-relaxed">
-                    Provide your approximate dimensions and project requirements. We offer free on-site laser measurements in Islamabad & Rawalpindi.
+                  <p className="text-sm text-on-surface-variant mt-3 leading-relaxed">
+                    Provide your approximate dimensions. We offer free on-site laser measurements in Islamabad &amp; Rawalpindi.
                   </p>
                 </div>
 
                 <div className="space-y-3 pt-2">
                   <Link
                     href={`/quote?service=${encodeURIComponent(service.title)}`}
-                    className="w-full inline-flex items-center justify-center space-x-2 bg-accent hover:bg-accent-light text-primary font-bold py-4 px-4 rounded-xl text-sm transition-all duration-200 shadow-md hover:-translate-y-0.5"
+                    className="w-full inline-flex items-center justify-center space-x-2 bg-secondary hover:bg-secondary-hover text-white font-semibold py-4 px-4 rounded-full text-sm transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5"
                   >
                     <FileCheck2 className="w-4 h-4" />
                     <span>Request Detailed Quote</span>
@@ -559,7 +545,7 @@ export default async function ServiceDetailPage({
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center space-x-2.5 bg-[#25D366] hover:bg-[#20BA5A] text-white font-bold py-4 px-4 rounded-xl text-sm transition-all duration-200 shadow-md hover:-translate-y-0.5"
+                    className="w-full inline-flex items-center justify-center space-x-2 bg-green-500 hover:bg-green-600 text-white font-semibold py-4 px-4 rounded-full text-sm transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5"
                   >
                     <WhatsAppIcon className="w-5 h-5 shrink-0" />
                     <span>Chat on WhatsApp</span>
@@ -567,24 +553,24 @@ export default async function ServiceDetailPage({
 
                   <a
                     href="tel:+923379289079"
-                    className="w-full inline-flex items-center justify-center space-x-2 bg-white/10 hover:bg-white/20 text-white font-semibold py-3.5 px-4 rounded-xl text-sm border border-white/15 transition-all"
+                    className="w-full inline-flex items-center justify-center space-x-2 bg-white text-on-surface hover:bg-neutral-50 font-semibold py-3.5 px-4 rounded-full text-sm border border-outline-variant transition-all shadow-sm"
                   >
-                    <Phone className="w-4 h-4 text-accent" />
+                    <Phone className="w-4 h-4 text-secondary" />
                     <span>Call: 0337 9289079</span>
                   </a>
                 </div>
 
-                <div className="pt-6 border-t border-white/10 text-xs text-gray-400 space-y-3">
+                <div className="pt-6 border-t border-outline-variant text-xs text-on-surface-variant space-y-3">
                   <div className="flex items-start space-x-2.5">
-                    <ShieldCheck className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-secondary shrink-0 mt-0.5" />
                     <span>Pak Land City Center, Office #05, I-8 Markaz, Islamabad</span>
                   </div>
                   <div className="flex items-start space-x-2.5">
-                    <Sparkles className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-secondary shrink-0 mt-0.5" />
                     <span>Guaranteed On-Time Handover</span>
                   </div>
                   <div className="flex items-start space-x-2.5">
-                    <Award className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-secondary shrink-0 mt-0.5" />
                     <span>100% Certified Safety Glass Guarantee</span>
                   </div>
                 </div>
@@ -599,23 +585,24 @@ export default async function ServiceDetailPage({
       {/* 3. CROSS-SERVICES DISCOVERY SECTION */}
       {/* ============================================================ */}
       {otherServices.length > 0 && (
-        <section className="py-20 bg-neutral-light border-t border-neutral-border">
+        <section className="py-20 bg-neutral-50 border-t border-outline-variant/60">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
             <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
               <div>
-                <span className="text-xs font-bold uppercase tracking-widest text-secondary">
+                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-secondary">
                   Explore Further
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-primary mt-1">
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-on-surface mt-2 tracking-tight">
                   Other Architectural Solutions
                 </h3>
               </div>
               <Link
                 href="/services"
-                className="inline-flex items-center space-x-2 text-xs font-bold text-[#1E5FA8] hover:text-primary transition-colors"
+                className="group inline-flex items-center space-x-2 text-sm font-semibold text-secondary hover:text-secondary-hover transition-colors"
               >
                 <span>View All Services</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
 
@@ -624,21 +611,21 @@ export default async function ServiceDetailPage({
                 <Link
                   key={other.id}
                   href={`/services/${other.slug}`}
-                  className="group bg-white p-6 rounded-2xl border border-neutral-border hover:border-accent/40 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+                  className="group bg-white p-6 rounded-2xl border border-outline-variant hover:border-secondary hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
                 >
                   <div>
                     <span className="text-xs font-mono font-bold text-secondary uppercase">
                       /services/{other.slug}
                     </span>
-                    <h4 className="text-lg font-bold text-primary mt-2 group-hover:text-secondary transition-colors">
+                    <h4 className="text-lg font-bold text-on-surface mt-2 group-hover:text-secondary transition-colors">
                       {other.title}
                     </h4>
-                    <p className="text-xs text-text-dark/70 line-clamp-2 mt-2 leading-relaxed">
+                    <p className="text-sm text-on-surface-variant line-clamp-2 mt-2 leading-relaxed">
                       {other.description}
                     </p>
                   </div>
 
-                  <div className="pt-4 border-t border-neutral-border mt-4 flex items-center justify-between text-xs font-bold text-[#1E5FA8] group-hover:text-accent transition-colors">
+                  <div className="pt-4 border-t border-outline-variant mt-5 flex items-center justify-between text-xs font-semibold text-secondary group-hover:text-secondary-hover transition-colors">
                     <span>View Specifications</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>

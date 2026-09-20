@@ -1,22 +1,14 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 import {
-  ShieldCheck,
-  Award,
-  Users,
-  CheckCircle2,
-  Clock,
   ArrowRight,
-  Building,
-  Target,
-  Sparkles,
   Layers,
   MapPin,
   Ruler,
-  Phone,
   Hammer,
+  CheckCircle2,
+  Quote,
 } from "lucide-react";
 
 const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://alsyedfabrications.com";
@@ -52,13 +44,6 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  const stats = [
-    { number: "10+", label: "Years of Master Craftsmanship" },
-    { number: "500+", label: "Projects Completed in Twin Cities" },
-    { number: "100%", label: "Certified Safety Tempered Glass" },
-    { number: "0 mm", label: "Laser Measurement Sizing Tolerance" },
-  ];
-
   const workflowSteps = [
     {
       step: "01",
@@ -75,24 +60,38 @@ export default function AboutPage() {
     {
       step: "03",
       icon: Hammer,
-      title: "Workshop Precision Assembly",
+      title: "Workshop Assembly",
       desc: "Precision mitering, thermal break crimping, and EPDM gasket insertion in our dedicated I-8 Markaz fabrication workshop.",
     },
     {
       step: "04",
       icon: CheckCircle2,
-      title: "Master Installation & Handover",
+      title: "Installation & Handover",
       desc: "Airtight on-site mounting, structural silicon weatherproofing, smooth roller calibration, and full functional inspection.",
     },
   ];
 
+  const coverageAreas = [
+    "F-6",
+    "F-7",
+    "F-8",
+    "F-10",
+    "F-11",
+    "E-11",
+    "I-8 Markaz",
+    "DHA Islamabad",
+    "Bahria Town",
+    "Gulberg Greens",
+    "PWD",
+    "Rawalpindi Cantt",
+  ];
+
   return (
-    <div className="flex flex-col min-h-screen bg-neutral-light">
-      {/* ============================================================ */}
-      {/* 1. HERO BANNER */}
-      {/* ============================================================ */}
-      <section className="relative bg-[#0B0F1A] text-white py-20 lg:py-28 overflow-hidden border-b border-white/10">
-        {/* Background Image Layer */}
+    <div className="flex flex-col min-h-screen bg-white">
+      {/* ═══════════════════════════════════════════════════════════════ */}
+      {/* 1. HERO BANNER — Dark overlay, matching homepage                 */}
+      {/* ═══════════════════════════════════════════════════════════════ */}
+      <section className="relative pt-36 pb-48 lg:pt-48 lg:pb-64 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=85&w=2000&auto=format&fit=crop"
@@ -100,147 +99,118 @@ export default function AboutPage() {
             fill
             priority
             sizes="100vw"
-            className="object-cover object-center scale-105 opacity-25"
+            className="object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0B0F1A]/90 via-[#0B0F1A]/85 to-[#0B0F1A]" />
-          <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(to_right,#ffffff15_1px,transparent_1px),linear-gradient(to_bottom,#ffffff15_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/25 to-black/60" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-accent text-xs font-semibold uppercase tracking-wider mb-6">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Over a Decade of Engineering Excellence • I-8 Markaz, Islamabad</span>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+          {/* Logo representation */}
+          <div className="flex flex-col items-center justify-center mb-6">
+            <div className="flex flex-col items-center space-y-4 text-white mb-2 [text-shadow:_0_1px_8px_rgba(0,0,0,0.8)]">
+              <div className="relative w-20 h-20 sm:w-24 sm:h-24 bg-white rounded-full flex items-center justify-center shadow-lg overflow-hidden border-4 border-white/20">
+                <Image src="/logo.jpeg" alt="Al Syed Logo" fill className="object-contain" />
+              </div>
+              <span className="text-4xl sm:text-5xl font-extrabold tracking-tight">
+                Al Syed Fabrications
+              </span>
+            </div>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight max-w-4xl mx-auto">
-            About Al Syed{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-[#F3E5AB] to-accent-light">
-              Aluminium & Glass
-            </span>
+          <h1 className="text-lg sm:text-xl font-semibold text-slate-200 tracking-tight max-w-2xl mx-auto [text-shadow:_0_1px_6px_rgba(0,0,0,0.8)]">
+            Building Your Future, One Project at a Time.
           </h1>
-
-          <p className="text-lg sm:text-xl text-accent-light/95 italic font-serif mt-5 max-w-2xl mx-auto">
-            &ldquo;Quality You Can See, Trust You Can Feel&rdquo;
-          </p>
-
-          <p className="text-sm sm:text-base text-gray-300 max-w-2xl mx-auto mt-4 leading-relaxed font-normal">
-            Islamabad and Rawalpindi&apos;s trusted fabrication engineers specializing in high-performance aluminium windows, frameless tempered glass doors, curtain wall facades, and contemporary railings.
-          </p>
-
-          {/* Key Metrics Counter Strip */}
-          <div className="mt-14 pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto text-center">
-            {stats.map((stat, idx) => (
-              <div key={idx} className="space-y-1">
-                <p className="text-3xl sm:text-4xl font-extrabold text-accent font-mono">
-                  {stat.number}
-                </p>
-                <p className="text-xs text-gray-300 uppercase tracking-wider font-medium">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* ============================================================ */}
-      {/* 2. COMPANY STORY & HERITAGE */}
-      {/* ============================================================ */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            {/* Story Text */}
-            <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-bold uppercase tracking-wider">
-                <span>Our Heritage & Vision</span>
-              </div>
-
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-primary leading-tight tracking-tight">
-                Architectural Precision, Built for Islamabad&apos;s Modern Skylines
+      {/* ═══════════════════════════════════════════════════════════════ */}
+      {/* 2. OUR STORY (Overlapping Card)                               */}
+      {/* ═══════════════════════════════════════════════════════════════ */}
+      <section className="relative z-20 -mt-28 sm:-mt-40 lg:-mt-48 mb-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-[2rem] shadow-2xl shadow-black/10 flex flex-col md:flex-row overflow-hidden border border-outline-variant/30">
+            {/* Text Side */}
+            <div className="flex-1 p-8 sm:p-12 lg:p-16 flex flex-col justify-center bg-white">
+              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-secondary mb-3">
+                Our Story
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-on-surface mb-6 tracking-tight">
+                Our Story
               </h2>
-              <div className="w-20 h-1.5 bg-gradient-to-r from-accent to-secondary rounded-full" />
-              
-              <p className="text-base text-text-dark/80 leading-relaxed">
-                Operating from our engineering workshop and office in <span className="font-bold text-primary">Pak Land City Center, Office No. 05, I-8 Markaz, Islamabad</span>, <strong>Al Syed Aluminium and Glass Fabrications</strong> delivers bespoke architectural metalwork and glazing solutions across the Twin Cities.
-              </p>
-
-              <p className="text-base text-text-dark/80 leading-relaxed">
-                Whether fabricating slimline multi-track sliding windows for luxury residential villas, frameless 12mm glass entrance systems for corporate plazas, or structural curtain wall facades for commercial developments, our focus remains uncompromising: <span className="text-primary font-bold">heavy-gauge 6063-T6 aluminium alloys, certified safety glass, and punctual on-site installation</span>.
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-3">
-                <div className="flex items-start space-x-3.5 p-5 rounded-2xl bg-neutral-light border border-neutral-border shadow-2xs">
-                  <div className="w-10 h-10 rounded-xl bg-accent/15 text-accent flex items-center justify-center shrink-0 mt-0.5">
-                    <Target className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-bold text-primary">Our Mission</h3>
-                    <p className="text-xs text-text-dark/70 mt-1 leading-relaxed">
-                      Deliver long-lasting, weather-resistant, and aesthetically refined architectural fabrications.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-3.5 p-5 rounded-2xl bg-neutral-light border border-neutral-border shadow-2xs">
-                  <div className="w-10 h-10 rounded-xl bg-secondary/15 text-secondary flex items-center justify-center shrink-0 mt-0.5">
-                    <ShieldCheck className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-bold text-primary">Safety & Integrity</h3>
-                    <p className="text-xs text-text-dark/70 mt-1 leading-relaxed">
-                      100% certified tempered safety glass and structural hardware engineered for wind-load resistance.
-                    </p>
-                  </div>
-                </div>
+              <div className="space-y-4 text-sm sm:text-base text-on-surface-variant leading-relaxed">
+                <p>
+                  Al Syed Aluminium &amp; Glass Fabrications was founded with a singular vision: to revolutionize the architectural fabrication market in Islamabad and Rawalpindi by providing transparent, trustworthy, and premium fabrication services.
+                </p>
+                <p>
+                  Over the years, we have grown from a small local workshop into a trusted regional partner, helping countless families and businesses build their perfect space with precision-engineered windows, doors, and curtain walls.
+                </p>
               </div>
             </div>
-
-            {/* Visual Photo Card */}
-            <div className="lg:col-span-5">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-neutral-border bg-primary">
-                <div className="relative h-96 w-full">
-                  <Image
-                    src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1000&auto=format&fit=crop"
-                    alt="Fabrication Workshop and Installation"
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F1A] via-[#0B0F1A]/30 to-transparent" />
-                </div>
-                <div className="p-7 text-white bg-[#0B0F1A] border-t border-white/10">
-                  <div className="flex items-center space-x-2 text-accent text-xs font-bold uppercase mb-1.5">
-                    <MapPin className="w-4 h-4" />
-                    <span>Pak Land City Center, I-8 Markaz, Islamabad</span>
-                  </div>
-                  <p className="text-sm font-bold text-white leading-snug">
-                    Centrally located fabrication hub for rapid laser survey and on-site dispatch across Islamabad & Rawalpindi.
-                  </p>
-                </div>
-              </div>
+            {/* Image Side */}
+            <div className="md:w-5/12 lg:w-1/2 relative min-h-[300px] md:min-h-full">
+              <Image
+                src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1000&auto=format&fit=crop"
+                alt="Our Story"
+                fill
+                className="object-cover"
+              />
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* ============================================================ */}
-      {/* 3. 4-STEP QUALITY PROCESS WORKFLOW */}
-      {/* ============================================================ */}
-      <section className="py-24 bg-gradient-to-b from-neutral-light via-white to-neutral-light border-t border-b border-neutral-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-bold uppercase tracking-widest text-secondary">
-              Strict Quality Control
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-primary mt-2 tracking-tight">
-              Our 4-Step Engineering & Quality Process
+      {/* ═══════════════════════════════════════════════════════════════ */}
+      {/* 3. CEO MESSAGE                                                */}
+      {/* ═══════════════════════════════════════════════════════════════ */}
+      <section className="py-16 sm:py-20 bg-neutral-50 border-y border-outline-variant/50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <span className="flex-1 max-w-[60px] h-[2px] bg-secondary rounded-full" />
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-on-surface tracking-tight">
+              CEO Message
             </h2>
-            <div className="w-16 h-1 bg-accent mx-auto mt-4 rounded-full" />
-            <p className="text-sm sm:text-base text-text-dark/70 mt-4 leading-relaxed">
-              From architectural blueprint review to final lock and sliding calibration, every millimeter is strictly verified.
+            <span className="flex-1 max-w-[60px] h-[2px] bg-secondary rounded-full" />
+          </div>
+
+          <div className="bg-white rounded-3xl p-8 sm:p-12 lg:p-16 shadow-sm border border-outline-variant mt-10 relative">
+            <Quote className="w-16 h-16 text-secondary/10 absolute top-8 left-8" />
+            
+            <div className="relative z-10 space-y-6 text-on-surface-variant leading-relaxed text-sm sm:text-base text-left">
+              <p>
+                &ldquo;Welcome to Al Syed Aluminium &amp; Glass Fabrications. When we started this company, our goal was simple: to bring integrity, precision, and world-class craftsmanship to the local fabrication industry. Today, I am proud to say that we have stayed true to that mission.
+              </p>
+              <p>
+                We understand that when you invest in architectural aluminium and glass, you are investing in the safety, aesthetics, and longevity of your property. That is why we refuse to compromise on material quality. We strictly use heavy-gauge structural alloys and certified safety glass, ensuring our installations can withstand the test of time and the harsh realities of our local climate.
+              </p>
+              <p>
+                To our clients, thank you for your continued trust. To our prospective partners, we look forward to bringing your architectural visions to life with zero-gap precision and absolute transparency.&rdquo;
+              </p>
+              <div className="pt-8 mt-8 border-t border-outline-variant flex flex-col items-start">
+                <p className="font-extrabold text-on-surface text-lg">Muhammad Rizwan</p>
+                <p className="text-secondary text-xs font-bold uppercase tracking-wider mt-1">Chief Executive Officer</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* ═══════════════════════════════════════════════════════════════ */}
+      {/* 4. OUR PROCESS                                                */}
+      {/* ═══════════════════════════════════════════════════════════════ */}
+      <section className="py-20 sm:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section heading */}
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="flex items-center justify-center gap-4 mb-3">
+              <span className="flex-1 max-w-[80px] h-[2px] bg-secondary rounded-full" />
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-on-surface tracking-tight">
+                Our Process
+              </h2>
+              <span className="flex-1 max-w-[80px] h-[2px] bg-secondary rounded-full" />
+            </div>
+            <p className="text-base sm:text-lg text-on-surface-variant mt-3 leading-relaxed">
+              From architectural blueprint review to final lock and sliding calibration — every millimeter strictly verified.
             </p>
           </div>
 
@@ -250,126 +220,96 @@ export default function AboutPage() {
               return (
                 <div
                   key={step.step}
-                  className="bg-white rounded-3xl p-7 shadow-sm hover:shadow-xl border border-neutral-border hover:border-accent/40 transition-all duration-300 flex flex-col justify-between group"
+                  className="bg-white rounded-2xl p-7 border border-outline-variant hover:shadow-lg hover:border-secondary/30 transition-all duration-300 flex flex-col group"
                 >
-                  <div>
-                    <div className="flex items-center justify-between mb-5">
-                      <span className="text-2xl font-mono font-extrabold text-accent">
-                        {step.step}
-                      </span>
-                      <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-accent shadow-xs">
-                        <IconComponent className="w-5 h-5" />
-                      </div>
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="text-2xl font-mono font-extrabold text-secondary">
+                      {step.step}
+                    </span>
+                    <div className="w-12 h-12 rounded-xl bg-secondary/10 text-secondary group-hover:bg-secondary group-hover:text-white flex items-center justify-center transition-all duration-300">
+                      <IconComponent className="w-6 h-6" />
                     </div>
-                    <h3 className="text-lg font-bold text-primary mb-2 group-hover:text-secondary transition-colors">
-                      {step.title}
-                    </h3>
-                    <p className="text-xs text-text-dark/70 leading-relaxed">
-                      {step.desc}
-                    </p>
                   </div>
+                  <h3 className="text-base font-bold text-on-surface mb-2 group-hover:text-secondary transition-colors">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-on-surface-variant leading-relaxed">
+                    {step.desc}
+                  </p>
                 </div>
               );
             })}
           </div>
-
         </div>
       </section>
 
-      {/* ============================================================ */}
-      {/* 4. COVERAGE AREAS STRIP */}
-      {/* ============================================================ */}
-      <section className="py-16 bg-white">
+      {/* ═══════════════════════════════════════════════════════════════ */}
+      {/* 5. AREAS WE SERVE                                             */}
+      {/* ═══════════════════════════════════════════════════════════════ */}
+      <section className="py-20 sm:py-24 bg-neutral-50 border-t border-outline-variant/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-primary text-white rounded-3xl p-8 sm:p-12 border border-white/10 shadow-xl flex flex-col lg:flex-row items-center justify-between gap-8">
-            <div className="space-y-2 max-w-xl text-center lg:text-left">
-              <span className="text-xs font-bold uppercase tracking-widest text-accent">
-                Twin Cities Service Coverage
-              </span>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
-                Serving All Major Sectors & Housing Societies
-              </h3>
-              <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">
-                Daily fabrication dispatch across Sector F-6, F-7, F-8, F-10, F-11, E-11, I-8, DHA Islamabad, Bahria Town, Gulberg Greens, and Rawalpindi Cantt.
-              </p>
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <div className="flex items-center justify-center gap-4 mb-3">
+              <span className="flex-1 max-w-[80px] h-[2px] bg-secondary rounded-full" />
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-on-surface tracking-tight">
+                Areas We Serve
+              </h2>
+              <span className="flex-1 max-w-[80px] h-[2px] bg-secondary rounded-full" />
             </div>
+            <p className="text-base sm:text-lg text-on-surface-variant mt-3">
+              Daily fabrication dispatch across all major sectors of Islamabad &amp; Rawalpindi.
+            </p>
+          </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-3 shrink-0">
-              <Link
-                href="/quote"
-                className="inline-flex items-center space-x-2 bg-accent hover:bg-accent-light text-primary font-bold px-6 py-3.5 rounded-xl text-sm transition-all shadow-md"
+          <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+            {coverageAreas.map((area) => (
+              <span
+                key={area}
+                className="inline-flex items-center space-x-1.5 px-5 py-2.5 rounded-full bg-white border border-outline-variant text-sm font-semibold text-on-surface hover:border-secondary hover:text-secondary transition-colors shadow-sm hover:shadow-md"
               >
-                <span>Request On-Site Survey</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <a
-                href="tel:+923379289079"
-                className="inline-flex items-center space-x-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-5 py-3.5 rounded-xl text-sm border border-white/20 transition-all"
-              >
-                <Phone className="w-4 h-4 text-accent" />
-                <span>0337 9289079</span>
-              </a>
-            </div>
+                <MapPin className="w-4 h-4 text-secondary" />
+                <span>{area}</span>
+              </span>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ============================================================ */}
-      {/* 5. BOTTOM CTA BANNER */}
-      {/* ============================================================ */}
-      <section className="relative text-white py-20 overflow-hidden">
+      {/* ═══════════════════════════════════════════════════════════════ */}
+      {/* 6. BOTTOM CTA                                                 */}
+      {/* ═══════════════════════════════════════════════════════════════ */}
+      <section className="relative text-white py-16 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1486325212027-8081e485255e?q=80&w=2000&auto=format&fit=crop"
-            alt="Architectural facade"
+            src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=85&w=2000&auto=format&fit=crop"
+            alt="Architectural aluminium project"
             fill
             sizes="100vw"
             className="object-cover object-center"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0B0F1A]/95 via-[#0B0F1A]/88 to-[#0B0F1A]/75" />
+          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/25 to-black/60" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="inline-block text-xs font-bold uppercase tracking-widest text-accent mb-3">
-            Get Started Today
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white max-w-3xl mx-auto leading-tight">
-            Discuss Your Architectural Glass & Aluminium Project
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight [text-shadow:_0_2px_12px_rgba(0,0,0,0.85)] mb-5">
+            Discuss Your Project With Our Engineers
           </h2>
-          <p className="text-base sm:text-lg text-gray-300 max-w-xl mx-auto mt-4 mb-8 leading-relaxed">
-            Speak directly with our senior fabrication engineers for profile samples, structural consultations, and transparent pricing.
+          <p className="text-base sm:text-lg text-white max-w-2xl mx-auto mb-10 leading-relaxed [text-shadow:_0_1px_8px_rgba(0,0,0,0.85)]">
+            Speak directly with our senior fabrication team for profile samples, structural consultations, and transparent pricing.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/quote"
-              className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 bg-accent hover:bg-accent-light text-primary font-bold px-8 py-4 rounded-xl text-base transition-all duration-200 shadow-md hover:-translate-y-0.5"
-            >
-              <span>Get a Free Quote</span>
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-
-            <a
-              href="https://wa.me/923379289079?text=Hello%20Al%20Syed%20Fabrications,%20I%20would%20like%20to%20discuss%20a%20project."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center space-x-2.5 bg-[#25D366] hover:bg-[#20BA5A] text-white font-bold px-8 py-4 rounded-xl text-base transition-all duration-200 shadow-md hover:-translate-y-0.5"
-            >
-              <WhatsAppIcon className="w-5 h-5 shrink-0" />
-              <span>WhatsApp Direct</span>
-            </a>
-
-            <a
-              href="tel:+923379289079"
-              className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-4 rounded-xl text-base border border-white/20 backdrop-blur-sm transition-all"
-            >
-              <Phone className="w-4 h-4 text-accent" />
-              <span>0337 9289079</span>
-            </a>
-          </div>
+          <Link
+            href="/contact"
+            className="group inline-flex items-center justify-center space-x-2.5 h-14 px-10 rounded-full bg-secondary hover:bg-secondary-hover text-white font-semibold text-base shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+          >
+            <span>Contact Us</span>
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
       </section>
+
     </div>
   );
 }

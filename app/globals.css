@@ -3,33 +3,71 @@
 @tailwind utilities;
 
 :root {
-  /* Primary (navy/charcoal) */
-  --primary: #0B0F1A;
-  --primary-dark: #070A12;
-  --primary-surface: #0F1420;
+  /* ── Material 3 — Navy Blue & White Theme ─────────────────────────── */
 
-  /* Accent (gold) */
-  --accent: #C9A24B;
-  --accent-light: #D4AF6A;
-  --accent-hover: #b38e3a;
+  /* Primary (Deep Architectural Navy) */
+  --primary: #0A192F;
+  --primary-dark: #060E1A;
+  --primary-surface: #0F1D32;
 
-  /* Secondary (brand blue) */
-  --secondary: #1E5FA8;
-  --secondary-light: #2C74C9;
-  --secondary-hover: #174b85;
+  /* Secondary / Interactive (Cobalt Blue) */
+  --secondary: #2563EB;
+  --secondary-light: #3B82F6;
+  --secondary-hover: #1D4ED8;
 
-  /* Neutral light */
-  --neutral-light: #F7F8FA;
+  /* Accent / Highlight (Sky / Ice Blue) */
+  --accent: #0284C7;
+  --accent-light: #38BDF8;
+  --accent-hover: #0369A1;
+
+  /* Surface & Containers (Material 3 Elevation) */
+  --surface: #FFFFFF;
+  --surface-dim: #F8FAFC;
+  --surface-container-lowest: #FFFFFF;
+  --surface-container-low: #F1F5F9;
+  --surface-container: #E2E8F0;
+  --surface-container-high: #CBD5E1;
+
+  /* Neutral / Outline */
+  --neutral-light: #F8FAFC;
   --neutral-surface: #FFFFFF;
   --neutral-border: #E2E8F0;
+  --outline: #CBD5E1;
+  --outline-variant: #E2E8F0;
 
-  /* Text dark & light */
-  --text-dark: #1A1D24;
+  /* On-Surface (Text) */
+  --text-dark: #0F172A;
   --text-light: #FFFFFF;
-  --text-soft: #EAEAEA;
+  --text-soft: #F1F5F9;
   --text-muted: #64748B;
+  --on-primary: #FFFFFF;
+  --on-secondary: #FFFFFF;
+  --on-surface: #0F172A;
+  --on-surface-variant: #475569;
 
-  /* WhatsApp green */
+  /* Primary Container (Tonal) */
+  --primary-container: #E0F2FE;
+  --on-primary-container: #0C4A6E;
+
+  /* Secondary Container (Tonal) */
+  --secondary-container: #DBEAFE;
+  --on-secondary-container: #1E40AF;
+
+  /* Tertiary Container */
+  --tertiary-container: #EFF6FF;
+  --on-tertiary-container: #1E3A5F;
+
+  /* Error */
+  --error: #DC2626;
+  --error-container: #FEE2E2;
+  --on-error: #FFFFFF;
+  --on-error-container: #991B1B;
+
+  /* Success */
+  --success: #16A34A;
+  --success-container: #DCFCE7;
+
+  /* WhatsApp Brand (Official — Preserved) */
   --whatsapp: #25D366;
   --whatsapp-hover: #20BA5A;
 }
@@ -39,28 +77,58 @@ html {
 }
 
 body {
-  color: var(--text-dark);
-  background-color: var(--neutral-light);
+  color: var(--on-surface);
+  background-color: var(--surface-dim);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* Custom scrollbars */
+/* ── Material 3 Scrollbar ───────────────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0B0F1A;
+  background: var(--surface-dim);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #C9A24B;
-  border-radius: 4px;
+  background: var(--surface-container-high);
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #D4AF6A;
+  background: var(--secondary);
+}
+
+/* ── Material 3 Elevation Utilities ─────────────────────────────────── */
+@layer utilities {
+  .elevation-0 {
+    box-shadow: none;
+  }
+  .elevation-1 {
+    box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.07), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  }
+  .elevation-2 {
+    box-shadow: 0 2px 6px 2px rgba(0, 0, 0, 0.07), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  }
+  .elevation-3 {
+    box-shadow: 0 4px 8px 3px rgba(0, 0, 0, 0.07), 0 1px 3px 0 rgba(0, 0, 0, 0.06);
+  }
+  .elevation-4 {
+    box-shadow: 0 6px 10px 4px rgba(0, 0, 0, 0.07), 0 2px 3px 0 rgba(0, 0, 0, 0.06);
+  }
+  .elevation-5 {
+    box-shadow: 0 8px 12px 6px rgba(0, 0, 0, 0.07), 0 4px 4px 0 rgba(0, 0, 0, 0.06);
+  }
+
+  /* Material 3 State Layer */
+  .state-layer-hover {
+    @apply hover:bg-black/[0.04] dark:hover:bg-white/[0.08];
+  }
+  .state-layer-press {
+    @apply active:bg-black/[0.08] dark:active:bg-white/[0.12];
+  }
 }

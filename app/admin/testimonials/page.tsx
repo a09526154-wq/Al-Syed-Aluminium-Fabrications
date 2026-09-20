@@ -161,7 +161,7 @@ export default function AdminTestimonialsPage() {
       <div className="bg-white rounded-2xl border border-neutral-border shadow-xs overflow-hidden">
         {loading ? (
           <div className="p-12 text-center">
-            <Loader2 className="w-6 h-6 animate-spin text-[#1E5FA8] mx-auto mb-2" />
+            <Loader2 className="w-6 h-6 animate-spin text-secondary mx-auto mb-2" />
             <p className="text-xs text-text-dark/60">Loading reviews...</p>
           </div>
         ) : testimonialsList.length === 0 ? (
@@ -225,7 +225,7 @@ export default function AdminTestimonialsPage() {
                     <td className="p-4 text-right space-x-2 shrink-0">
                       <button
                         onClick={() => openEdit(t)}
-                        className="p-1.5 rounded-lg text-[#1E5FA8] hover:bg-blue-50 transition-colors"
+                        className="p-1.5 rounded-lg text-secondary hover:bg-blue-50 transition-colors"
                         title="Edit Review"
                       >
                         <Edit2 className="w-4 h-4" />
@@ -270,7 +270,7 @@ export default function AdminTestimonialsPage() {
                   required
                   value={clientName}
                   onChange={(e) => setClientName(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl border border-neutral-border text-xs focus:outline-none focus:border-[#1E5FA8]"
+                  className="w-full px-3 py-2 rounded-xl border border-neutral-border text-xs focus:outline-none focus:border-secondary"
                 />
               </div>
 
@@ -281,7 +281,7 @@ export default function AdminTestimonialsPage() {
                 <select
                   value={rating}
                   onChange={(e) => setRating(Number(e.target.value))}
-                  className="w-full px-3 py-2 rounded-xl border border-neutral-border text-xs focus:outline-none focus:border-[#1E5FA8]"
+                  className="w-full px-3 py-2 rounded-xl border border-neutral-border text-xs focus:outline-none focus:border-secondary"
                 >
                   <option value={5}>5 Stars (Excellent)</option>
                   <option value={4}>4 Stars (Good)</option>
@@ -300,7 +300,7 @@ export default function AdminTestimonialsPage() {
                   rows={4}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl border border-neutral-border text-xs focus:outline-none focus:border-[#1E5FA8]"
+                  className="w-full px-3 py-2 rounded-xl border border-neutral-border text-xs focus:outline-none focus:border-secondary"
                 />
               </div>
 
@@ -315,7 +315,7 @@ export default function AdminTestimonialsPage() {
                 <button
                   type="submit"
                   disabled={actionLoading}
-                  className="px-5 py-2 rounded-xl text-xs font-bold bg-[#1E5FA8] hover:bg-[#2C74C9] text-white transition-colors disabled:opacity-60"
+                  className="px-5 py-2 rounded-xl text-xs font-bold bg-secondary hover:bg-secondary-hover text-white transition-colors disabled:opacity-60"
                 >
                   {actionLoading ? "Saving..." : "Save Changes"}
                 </button>

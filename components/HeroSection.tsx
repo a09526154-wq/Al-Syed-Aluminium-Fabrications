@@ -1,181 +1,137 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { WhatsAppIcon } from "@/components/WhatsAppIcon";
-import {
-  ArrowRight,
-  ShieldCheck,
-  CheckCircle2,
-  Layers,
-  Clock,
-  Phone,
-  Sparkles,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
-// ── Typing animation for the tagline ─────────────────────────────────────────
-const FULL_TEXT = "Quality You Can See, Trust You Can Feel";
-const TYPING_SPEED = 55; // ms per character
-const START_DELAY = 600; // ms before typing begins
-
-function useTypingAnimation(text: string) {
-  const [displayed, setDisplayed] = useState("");
-  const [done, setDone] = useState(false);
-
-  useEffect(() => {
-    let i = 0;
-    setDisplayed("");
-    setDone(false);
-
-    const timeout = setTimeout(() => {
-      const interval = setInterval(() => {
-        i++;
-        setDisplayed(text.slice(0, i));
-        if (i >= text.length) {
-          clearInterval(interval);
-          setDone(true);
-        }
-      }, TYPING_SPEED);
-      return () => clearInterval(interval);
-    }, START_DELAY);
-
-    return () => clearTimeout(timeout);
-  }, [text]);
-
-  return { displayed, done };
+interface HeroSlide {
+  image: string;
+  headlineMain: string;
+  headlineHighlight: string;
+  tagline: string;
+  description: string;
 }
 
-// ── Main Component ────────────────────────────────────────────────────────────
+const HERO_SLIDES: HeroSlide[] = [
+  {
+    image: "/hero.jpeg",
+    headlineMain: "Precision Engineering in ",
+    headlineHighlight: "Aluminium & Glass",
+    tagline: "Quality You Can See, Trust You Can Feel",
+    description:
+      "Islamabad & Rawalpindi's premier fabricators of high-performance aluminium windows, frameless tempered glass doors, structural curtain wall facades, and contemporary glass railings.",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=85&w=2000&auto=format&fit=crop",
+    headlineMain: "Custom Sliding & ",
+    headlineHighlight: "Casement Windows",
+    tagline: "Engineered for Aesthetics, Built for Durability",
+    description:
+      "Bespoke thermal-break and multi-track window systems custom-manufactured to exact millimeter dimensions in our dedicated I-8 Markaz workshop.",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=85&w=2000&auto=format&fit=crop",
+    headlineMain: "Curtain Walls & ",
+    headlineHighlight: "Modern Glass Railings",
+    tagline: "Modern Architectural Facades & Balustrades",
+    description:
+      "Elevating commercial buildings and residential villas with high-wind structural glazing, minimalist frameless spigots, and weather-sealed installations.",
+  },
+];
+
+const SLIDE_DURATION = 6000; // 6 seconds per slide
+
 export function HeroSection() {
-  const heroRef = useRef<HTMLElement>(null);
-  const { displayed, done } = useTypingAnimation(FULL_TEXT);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      nextSlide();
+    }, SLIDE_DURATION);
+
+    return () => clearInterval(timer);
+  }, [nextSlide]);
+
+  const slide = HERO_SLIDES[currentSlide];
 
   return (
-    <section
-      ref={heroRef}
-      className="relative min-h-[92vh] lg:min-h-[96vh] flex flex-col justify-between bg-[#0B0F1A] text-white overflow-hidden border-b border-white/10 select-none"
-    >
-      {/* ── Background image + clean dark overlay ─────────────────────────── */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/hero.jpeg"
-          alt="Al Syed Aluminium and Glass Architectural Fabrication"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center scale-105"
-        />
-        {/* Single clean dark gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0B0F1A]/85 via-[#0B0F1A]/80 to-[#0B0F1A]" />
-        <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#ffffff15_1px,transparent_1px),linear-gradient(to_bottom,#ffffff15_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-      </div>
-
-      {/* ── Hero content (centered) ────────────────────────────────────────── */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
-        {/* Location & Title Header (Clean floating typography, no card/pill container) */}
-        <div className="flex items-center justify-center space-x-2.5 mb-6 animate-in fade-in slide-in-from-top-3 duration-700">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
-          </span>
-          <span className="text-xs sm:text-sm font-bold uppercase tracking-widest text-accent">
-            Pak Land City Center, I-8 Markaz, Islamabad
-          </span>
-          <span className="text-white/40 hidden sm:inline">•</span>
-          <span className="text-xs sm:text-sm text-gray-300 tracking-wider hidden sm:inline font-semibold uppercase">
-            Architectural Fabricators
-          </span>
+    <section className="relative min-h-[70vh] lg:min-h-[78vh] flex flex-col justify-center bg-black text-white overflow-hidden select-none">
+      {/* ── Background Carousel Images with Smooth Cross-Fade ───────── */}
+      {HERO_SLIDES.map((s, index) => (
+        <div
+          key={s.image}
+          className={`absolute inset-0 z-0 transition-opacity duration-1000 ease-in-out ${
+            index === currentSlide ? "opacity-100 scale-100" : "opacity-0 scale-105 pointer-events-none"
+          }`}
+          style={{ transitionProperty: "opacity, transform" }}
+        >
+          <Image
+            src={s.image}
+            alt={`${s.headlineMain} ${s.headlineHighlight}`}
+            fill
+            priority={index === 0}
+            sizes="100vw"
+            className="object-cover object-center"
+          />
         </div>
+      ))}
 
-        {/* Main headline */}
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.1] max-w-4xl mb-4 animate-in fade-in zoom-in-95 duration-700">
-          Precision Engineering in{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-[#F3E5AB] to-accent-light">
-            Aluminium & Glass
-          </span>
+      {/* ── Light Black / Grey Low-Intensity Filter on Images ────────── */}
+      <div className="absolute inset-0 z-0 bg-black/40" />
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/50 via-black/25 to-black/60" />
+
+      {/* ── Hero Content (Centered, Decreased Height, 100% Solid White Text) ── */}
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-14 sm:pt-28 sm:pb-16 text-center flex flex-col items-center justify-center">
+        {/* Main Headline — 100% Solid White Text with High Readability Shadow */}
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15] max-w-4xl mb-3 [text-shadow:_0_2px_12px_rgba(0,0,0,0.85)] transition-all duration-500">
+          <span>{slide.headlineMain}</span>
+          <span className="text-white">{slide.headlineHighlight}</span>
         </h1>
 
-        {/* ── TYPING ANIMATION TAGLINE — static position ────────────────── */}
-        <div className="mt-4 mb-2 z-20">
-          <p className="text-xl sm:text-2xl md:text-3xl font-bold italic tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-[#FFF5D0] via-accent-light to-accent font-serif min-h-[2em] flex items-center justify-center">
-            &ldquo;
-            {displayed}
-            {!done && (
-              <span className="inline-block w-0.5 h-7 sm:h-8 md:h-9 bg-accent ml-0.5 animate-pulse" />
-            )}
-            &rdquo;
+        {/* Tagline — 100% Solid White Text */}
+        <div className="mt-2 mb-2">
+          <p className="text-lg sm:text-xl md:text-2xl font-bold italic tracking-wide text-white font-serif [text-shadow:_0_2px_10px_rgba(0,0,0,0.85)] transition-all duration-500">
+            &ldquo;{slide.tagline}&rdquo;
           </p>
         </div>
 
-        {/* Subtitle */}
-        <p className="mt-6 text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-normal">
-          Islamabad & Rawalpindi&rsquo;s premier fabricators of high-performance aluminium windows, frameless tempered glass doors, structural curtain wall facades, and contemporary glass railings.
+        {/* Subtitle Description — 100% Solid White Text */}
+        <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-white max-w-2xl mx-auto leading-relaxed font-medium [text-shadow:_0_1px_8px_rgba(0,0,0,0.85)] transition-all duration-500">
+          {slide.description}
         </p>
 
-        {/* ── REDESIGNED PROFESSIONAL CTA BUTTONS (Mobile 2-Tier & Desktop Row) ── */}
-        <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full max-w-sm sm:max-w-none">
-          {/* 1. Primary Action: Free Quote CTA */}
+        {/* ── Action Button ──────────────────────────────────────────── */}
+        <div className="mt-8 sm:mt-10 flex items-center justify-center">
           <Link
             href="/quote"
-            className="group relative inline-flex items-center justify-center space-x-2 h-12 sm:h-14 px-6 sm:px-8 rounded-xl bg-gradient-to-r from-[#C9A24B] via-[#D8B45E] to-[#E5C97D] text-[#0B0F1A] font-extrabold text-sm sm:text-base tracking-tight shadow-[0_8px_20px_-4px_rgba(201,162,75,0.35)] hover:shadow-[0_12px_25px_-4px_rgba(201,162,75,0.5)] border border-[#FFE8A3]/50 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+            className="group inline-flex items-center justify-center space-x-2.5 h-14 px-10 rounded-full bg-secondary hover:bg-secondary-hover text-white font-semibold text-base tracking-tight elevation-3 hover:elevation-4 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 [text-shadow:none]"
           >
             <span>Request a Free Quote</span>
-            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-200 group-hover:translate-x-1" />
+            <ArrowRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
           </Link>
-
-          {/* 2 & 3. Secondary Actions: Side-by-side on Mobile, Inline on Desktop */}
-          <div className="grid grid-cols-2 sm:flex sm:items-center gap-2.5 sm:gap-4">
-            {/* WhatsApp CTA */}
-            <a
-              href="https://wa.me/923379289079?text=Hello%20Al%20Syed%20Fabrications,%20I%20would%20like%20to%20inquire%20about%20a%20project."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative inline-flex items-center justify-center space-x-2 h-12 sm:h-14 px-4 sm:px-6 rounded-xl bg-gradient-to-r from-[#25D366] to-[#20BA5A] hover:from-[#22bf5b] hover:to-[#1ca44f] text-white font-bold text-xs sm:text-base tracking-tight shadow-[0_8px_20px_-4px_rgba(37,211,102,0.3)] hover:shadow-[0_12px_25px_-4px_rgba(37,211,102,0.45)] border border-[#4AE584]/40 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
-            >
-              <WhatsAppIcon className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 transition-transform duration-200 group-hover:scale-110" />
-              <span>WhatsApp</span>
-            </a>
-
-            {/* Direct Phone Call */}
-            <a
-              href="tel:+923379289079"
-              className="group relative inline-flex items-center justify-center space-x-2 h-12 sm:h-14 px-3 sm:px-6 rounded-xl bg-white/[0.08] hover:bg-white/[0.14] text-white font-bold text-xs sm:text-base tracking-tight border border-white/20 hover:border-white/40 backdrop-blur-md shadow-[0_8px_20px_-4px_rgba(0,0,0,0.3)] hover:shadow-[0_12px_25px_-4px_rgba(0,0,0,0.4)] transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
-            >
-              <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent shrink-0" />
-              <span className="font-mono text-xs sm:text-base whitespace-nowrap">0337 9289079</span>
-            </a>
-          </div>
         </div>
-      </div>
 
-      {/* ── Bottom trust badges strip ──────────────────────────────────────── */}
-      <div className="relative z-10 w-full bg-[#0F1420]/90 border-t border-white/10 py-5 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center lg:justify-between gap-6 text-xs sm:text-sm text-gray-200">
-          <div className="flex items-center space-x-2.5">
-            <div className="w-7 h-7 rounded-lg bg-accent/15 text-accent flex items-center justify-center shrink-0 border border-accent/30">
-              <CheckCircle2 className="w-4 h-4" />
-            </div>
-            <span className="font-semibold">Free Laser Site Measurement</span>
-          </div>
-          <div className="flex items-center space-x-2.5">
-            <div className="w-7 h-7 rounded-lg bg-accent/15 text-accent flex items-center justify-center shrink-0 border border-accent/30">
-              <ShieldCheck className="w-4 h-4" />
-            </div>
-            <span className="font-semibold">100% Certified Tempered Safety Glass</span>
-          </div>
-          <div className="flex items-center space-x-2.5">
-            <div className="w-7 h-7 rounded-lg bg-accent/15 text-accent flex items-center justify-center shrink-0 border border-accent/30">
-              <Layers className="w-4 h-4" />
-            </div>
-            <span className="font-semibold">Heavy-Duty 6063-T6 Aluminium Profiles</span>
-          </div>
-          <div className="flex items-center space-x-2.5">
-            <div className="w-7 h-7 rounded-lg bg-accent/15 text-accent flex items-center justify-center shrink-0 border border-accent/30">
-              <Clock className="w-4 h-4" />
-            </div>
-            <span className="font-semibold">Punctual Delivery & Handover</span>
-          </div>
+        {/* ── Slide Indicator Dots (Material 3 Pill System) ──────────── */}
+        <div className="flex items-center justify-center space-x-2 mt-8">
+          {HERO_SLIDES.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentSlide(idx)}
+              className={`h-2 transition-all duration-300 rounded-m3-full cursor-pointer ${
+                idx === currentSlide
+                  ? "w-7 bg-white"
+                  : "w-2 bg-white/40 hover:bg-white/70"
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
         </div>
       </div>
     </section>
