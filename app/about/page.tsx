@@ -71,21 +71,6 @@ export default function AboutPage() {
     },
   ];
 
-  const coverageAreas = [
-    "F-6",
-    "F-7",
-    "F-8",
-    "F-10",
-    "F-11",
-    "E-11",
-    "I-8 Markaz",
-    "DHA Islamabad",
-    "Bahria Town",
-    "Gulberg Greens",
-    "PWD",
-    "Rawalpindi Cantt",
-  ];
-
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* ═══════════════════════════════════════════════════════════════ */}
@@ -239,38 +224,6 @@ export default function AboutPage() {
                 </div>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════════ */}
-      {/* 5. AREAS WE SERVE                                             */}
-      {/* ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-20 sm:py-24 bg-neutral-50 border-t border-outline-variant/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <div className="flex items-center justify-center gap-4 mb-3">
-              <span className="flex-1 max-w-[80px] h-[2px] bg-secondary rounded-full" />
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-on-surface tracking-tight">
-                Areas We Serve
-              </h2>
-              <span className="flex-1 max-w-[80px] h-[2px] bg-secondary rounded-full" />
-            </div>
-            <p className="text-base sm:text-lg text-on-surface-variant mt-3">
-              Daily fabrication dispatch across all major sectors of Islamabad &amp; Rawalpindi.
-            </p>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
-            {coverageAreas.map((area) => (
-              <span
-                key={area}
-                className="inline-flex items-center space-x-1.5 px-5 py-2.5 rounded-full bg-white border border-outline-variant text-sm font-semibold text-on-surface hover:border-secondary hover:text-secondary transition-colors shadow-sm hover:shadow-md"
-              >
-                <MapPin className="w-4 h-4 text-secondary" />
-                <span>{area}</span>
-              </span>
-            ))}
           </div>
         </div>
       </section>

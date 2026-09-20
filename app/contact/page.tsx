@@ -166,21 +166,6 @@ export default function ContactPage() {
 
               </div>
 
-              {/* Service Areas Card */}
-              <div className="bg-primary text-white p-8 rounded-2xl shadow-lg space-y-3">
-                <div className="flex items-center space-x-2 text-secondary-light">
-                  <Navigation className="w-5 h-5" />
-                  <span className="text-xs font-bold uppercase tracking-[0.15em]">
-                    Coverage Area
-                  </span>
-                </div>
-                <h4 className="text-xl font-bold text-white">
-                  Daily Twin Cities Site Dispatch
-                </h4>
-                <p className="text-sm text-slate-300 leading-relaxed">
-                  Regular site teams covering I-8, F-6, F-7, F-8, F-10, F-11, E-11, DHA Islamabad, Bahria Town, Gulberg Greens, and Rawalpindi Cantt.
-                </p>
-              </div>
 
             </div>
 
